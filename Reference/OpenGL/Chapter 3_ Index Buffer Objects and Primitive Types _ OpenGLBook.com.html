@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)http://openglbook.com/chapter-3-index-buffer-objects-and-primitive-types.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Chapter 3: Index Buffer Objects and Primitive Types | OpenGLBook.com</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/syntax.css">
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="http://openglbook.com/feed.xml">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/main.css">
+        <script async="" src="http://www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/jquery-2.1.0.min.js.download"></script>
+        <script type="text/javascript" src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/jsglhl.js.download"></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+          LinkOpenGLManPages();
+        });
+        </script>
+        <script type="text/javascript" src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/MathJax.js.download"></script>
+    <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head><script type="text/javascript">(function (canvas, canvasfont, audioblock, battery, webgl, webrtcdevice, gamepad, webvr, timezone, clientrects, clipboard){
+		function processFunctions(scope) {
+			/* Canvas */
+			if (canvas != 'false') {
+				var fakecanvas = scope.document.createElement('canvas');
+				fakecanvas.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_canvas';
+				if (canvas == 'random') {
+					var fakewidth = fakecanvas.width = Math.floor(Math.random() * 999) + 1;
+					var fakeheight = fakecanvas.height = Math.floor(Math.random() * 999) + 1;
+				}
+				var canvas_a = scope.HTMLCanvasElement;
+				var origToDataURL = canvas_a.prototype.toDataURL;
+				var origToBlob = canvas_a.prototype.toBlob;
+				canvas_a.prototype.toDataURL = function() {
+					fakecanvas.title = 'toDataURL';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origToDataURL.apply(fakecanvas, arguments);
+					} else if (canvas == 'random') {
+						return origToDataURL.apply(fakecanvas, arguments);
+					}
+				};
+				canvas_a.prototype.toBlob = function() {
+					fakecanvas.title = 'toBlob';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origToBlob.apply(fakecanvas, arguments);
+					} else if (canvas == 'random') {
+						return origToBlob.apply(fakecanvas, arguments);
+					}
+				};
+				var canvas_b = scope.CanvasRenderingContext2D;
+				var origGetImageData = canvas_b.prototype.getImageData;
+				canvas_b.prototype.getImageData = function() {
+					fakecanvas.title = 'getImageData';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origGetImageData.apply(fakecanvas.getContext('2d'), arguments);
+					} else if (canvas == 'random') {
+						return origGetImageData.apply(fakecanvas.getContext('2d'), [Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1, Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1]);
+					}
+				}
+				var origGetLineDash = canvas_b.prototype.getLineDash;
+				canvas_b.prototype.getLineDash = function() {
+					fakecanvas.title = 'getLineDash';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origGetLineDash.apply(fakecanvas.getContext('2d'), [0, 0]);
+					} else if (canvas == 'random') {
+						return origGetLineDash.apply(fakecanvas.getContext('2d'), [Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1]);
+					}
+				}
+				var canvas_c = scope.WebGLRenderingContext;
+				var origReadPixels = canvas_c.prototype.readPixels;
+				canvas_c.prototype.readPixels = function() {
+					fakecanvas.title = 'readPixels';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origReadPixels.apply(fakecanvas.getContext('webgl'), arguments);
+					} else if (canvas == 'random') {
+						return origReadPixels.apply(fakecanvas.getContext('webgl'), [Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1, Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1, arguments[4], arguments[5], arguments[6]]);
+					}
+				}
+			}
+			/* Audio Block */
+			if (audioblock == 'true') {
+				var audioblock_triggerblock = scope.document.createElement('div');
+				audioblock_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_audio';
+				var audioblock_a = scope.AudioBuffer;
+				audioblock_a.prototype.copyFromChannel = function() {
+					audioblock_triggerblock.title = 'copyFromChannel';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_a.prototype.getChannelData = function() {
+					audioblock_triggerblock.title = 'getChannelData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				var audioblock_b = scope.AnalyserNode;
+				audioblock_b.prototype.getFloatFrequencyData = function() {
+					audioblock_triggerblock.title = 'getFloatFrequencyData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_b.prototype.getByteFrequencyData = function() {
+					audioblock_triggerblock.title = 'getByteFrequencyData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_b.prototype.getFloatTimeDomainData = function() {
+					audioblock_triggerblock.title = 'getFloatTimeDomainData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_b.prototype.getByteTimeDomainData = function() {
+					audioblock_triggerblock.title = 'getByteTimeDomainData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				var audioblock_c = scope;
+				audioblock_c.AudioContext = function() {
+					audioblock_triggerblock.title = 'AudioContext';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_c.webkitAudioContext = function() {
+					audioblock_triggerblock.title = 'webkitAudioContext';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+			}
+			/* Canvas Font */
+			if (canvasfont == 'true') {
+				var canvasfont_triggerblock = scope.document.createElement('div');
+				canvasfont_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_canvasfont';
+				var canvasfont_a = scope.CanvasRenderingContext2D;
+				canvasfont_a.prototype.measureText = function() {
+					canvasfont_triggerblock.title = 'measureText';
+					document.documentElement.appendChild(canvasfont_triggerblock);
+					return false;
+				}
+			}
+			/* Battery */
+			if (battery == 'true') {
+				var battery_triggerblock = scope.document.createElement('div');
+				battery_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_battery';
+				var battery_a = scope.navigator;
+				battery_a.getBattery = function() {
+					battery_triggerblock.title = 'getBattery';
+					document.documentElement.appendChild(battery_triggerblock);
+					return void(0);
+				}
+			}
+			/* WebGL */
+			if (webgl == 'true') {
+				var webgl_triggerblock = scope.document.createElement('div');
+				webgl_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_webgl';
+				var webgl_a = scope.WebGLRenderingContext;
+				webgl_a.getSupportedExtensions = function() {
+					webgl_triggerblock.title = 'getSupportedExtensions';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+				webgl_a.getParameter = function() {
+					webgl_triggerblock.title = 'getParameter';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+				webgl_a.getContextAttributes = function() {
+					webgl_triggerblock.title = 'getContextAttributes';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+				webgl_a.getShaderPrecisionFormat = function() {
+					webgl_triggerblock.title = 'getShaderPrecisionFormat';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+				webgl_a.getExtension = function() {
+					webgl_triggerblock.title = 'getExtension';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+			}
+			/* WebRTC */
+			if (webrtcdevice == 'true') {
+				var webrtc_triggerblock = scope.document.createElement('div');
+				webrtc_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_webrtc';
+				var webrtc_a = scope.MediaStreamTrack;
+				webrtc_a.getSources = function() {
+					webrtc_triggerblock.title = 'getSources';
+					document.documentElement.appendChild(webrtc_triggerblock);
+					return false;
+				}
+				webrtc_a.getMediaDevices = function() {
+					webrtc_triggerblock.title = 'getMediaDevices';
+					document.documentElement.appendChild(webrtc_triggerblock);
+					return false;
+				}
+				var webrtc_b = scope.navigator.mediaDevices;
+				webrtc_b.enumerateDevices = function() {
+					webrtc_triggerblock.title = 'enumerateDevices';
+					document.documentElement.appendChild(webrtc_triggerblock);
+					return false;
+				}
+			}
+			/* Gamepad */
+			if (gamepad == 'true') {
+				var gamepad_triggerblock = scope.document.createElement('div');
+				gamepad_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_gamepad';
+				var gamepad_a = scope.navigator;
+				gamepad_a.getGamepads = function() {
+					gamepad_triggerblock.title = 'getGamepads';
+					document.documentElement.appendChild(gamepad_triggerblock);
+					return false;
+				}
+			}
+			/* WebVR */
+			if (webvr == 'true') {
+				var webvr_triggerblock = scope.document.createElement('div');
+				webvr_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_webvr';
+				var webvr_a = scope.navigator;
+				webvr_a.getVRDisplays = function() {
+					webvr_triggerblock.title = 'getVRDisplays';
+					document.documentElement.appendChild(webvr_triggerblock);
+					return false;
+				}
+			}
+			/* Client Rectangles */
+			if (clientrects == 'true') {
+				var clientrects_triggerblock = scope.document.createElement('div');
+				clientrects_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_clientrects';
+				Element.prototype.getClientRects = function() {
+					clientrects_triggerblock.title = 'getClientRects';
+					document.documentElement.appendChild(clientrects_triggerblock);
+					return [{'top': 0, 'bottom': 0, 'left': 0, 'right': 0, 'height': 0, 'width': 0}];
+				}
+			}
+			/* Timezone */
+			if (timezone != 'false') {
+				var timezone_triggerblock = scope.document.createElement('div');
+				timezone_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_timezone';
+				var timezone_a = scope.Date;
+				timezone_a.prototype.getTimezoneOffset = function() {
+					timezone_triggerblock.title = 'getTimezoneOffset';
+					document.documentElement.appendChild(timezone_triggerblock);
+					if (timezone == 'random') return ['720','660','600','570','540','480','420','360','300','240','210','180','120','60','0','-60','-120','-180','-210','-240','-270','-300','-330','-345','-360','-390','-420','-480','-510','-525','-540','-570','-600','-630','-660','-720','-765','-780','-840'][Math.floor(Math.random() * 39)];
+					return timezone;
+				}
+			}
+			/* Clipboard */
+			if (clipboard == 'true') {
+				var clipboard_triggerblock = scope.document.createElement('div');
+				clipboard_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_clipboard';
+				var clipboard_a = document;
+				var origExecCommand = clipboard_a.execCommand;
+				clipboard_a.execCommand = function() {
+					clipboard_triggerblock.title = 'execCommand';
+					document.documentElement.appendChild(clipboard_triggerblock);
+					if (arguments[0] == 'cut' || arguments[0] == 'copy') return false;
+					return origExecCommand.apply(this, arguments);
+				};
+			}
+		}
+		processFunctions(window);
+		var iwin = HTMLIFrameElement.prototype.__lookupGetter__('contentWindow'), idoc = HTMLIFrameElement.prototype.__lookupGetter__('contentDocument');
+		Object.defineProperties(HTMLIFrameElement.prototype, {
+			contentWindow: {
+				get: function() {
+					var frame = iwin.apply(this);
+					if (this.src && this.src.indexOf('//') != -1 && location.host != this.src.split('/')[2]) return frame;
+					try { frame.HTMLCanvasElement } catch (err) { /* do nothing*/ }
+					processFunctions(frame);
+					return frame;
+				}
+			},
+			contentDocument: {
+				get: function() {
+					if (this.src && this.src.indexOf('//') != -1 && location.host != this.src.split('/')[2]) return idoc.apply(this);
+					var frame = iwin.apply(this);
+					try { frame.HTMLCanvasElement } catch (err) { /* do nothing*/ }
+					processFunctions(frame);
+					return idoc.apply(this);
+				}
+			}
+		});
+	})('false','false','true','true','false','true','true','false','random','false','false');</script>
+    <body><div id="MathJax_Message" style="display: none;"></div>
+
+        <div class="site">
+          
+          <div class="header">
+            <h1 class="title"><a href="http://openglbook.com/">OpenGLBook.com</a></h1>
+          </div>
+
+          <div id="navigation">
+            <div class="menu">
+              <ul>
+                <li class="page_item">
+                  <a href="http://openglbook.com/">Home</a>
+                </li>
+                <li class="page_item">
+                  <a href="http://openglbook.com/the-book.html">The Book</a>
+                  <ul class="children">
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                      <li><a href="http://openglbook.com/chapter-0-preface-what-is-opengl.html">Preface: What is OpenGL?</a></li>
+                      
+                    
+                      
+                      <li><a href="http://openglbook.com/chapter-1-getting-started.html">Chapter 1: Getting Started</a></li>
+                      
+                    
+                      
+                      <li><a href="http://openglbook.com/chapter-2-vertices-and-shapes.html">Chapter 2: Vertices and Shapes</a></li>
+                      
+                    
+                      
+                      <li><a href="http://openglbook.com/chapter-3-index-buffer-objects-and-primitive-types.html">Chapter 3: Index Buffer Objects and Primitive Types</a></li>
+                      
+                    
+                      
+                      <li><a href="http://openglbook.com/chapter-4-entering-the-third-dimension.html">Chapter 4: Entering the Third Dimension</a></li>
+                      
+                    
+                      
+                      <li><a href="http://openglbook.com/credits.html">Credits</a></li>
+                      
+                    
+                  </ul>
+                </li>
+                <li class="page_item">
+                  <a href="http://openglbook.com/blog/">Blog</a>
+                  <ul class="children">
+                    <li><a href="http://openglbook.com/feed.xml">RSS Feed</a></li>
+                  </ul>
+                </li>
+                <li class="page_item">
+                  <a href="http://openglbook.com/chapter-3-index-buffer-objects-and-primitive-types.html#">Report Issues:</a>
+                  <ul class="children">
+                    <li>
+                      <a href="https://github.com/openglbook/openglbook.com/issues">
+                        Text Issues (typos, etc.)
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/openglbook/openglbook-samples/issues">Code Issues (bugs, etc.)</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <h1>Chapter 3: Index Buffer Objects and Primitive Types</h1>
+
+<p><img src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/C3I3-289x300.png" alt="Resulting Output" title="Resulting Output" class="right"></p>
+
+<p>Now that we’ve drawn our first geometric shapes in
+<a href="http://openglbook.com/chapter-2-vertices-and-shapes.html">Chapter 2</a>, it’s time to
+step up the complexity a bit. While uploading our vertices to the GPU and
+rendering them all as a batch is a great solution for a single triangle, you
+will soon notice that as geometric complexity increases, so does the need for
+more efficient rendering methods.</p>
+
+<p>In this chapter, you’ll learn how to:</p>
+
+<ul>
+<li>Use index buffers (AKA Index Buffer Objects, or IBOs).</li>
+<li>Draw complex geometry easier.</li>
+<li>Use several more primitive types.</li>
+</ul>
+
+<p>Please note that this chapter builds on the samples provided in Chapter 2, so if
+you haven't read it, I suggest you
+<a href="http://openglbook.com/chapter-2-vertices-and-shapes.html">read it now</a></p>
+
+<p><strong><a href="http://openglbook.com/chapter-0-preface-what-is-opengl.html">Check the requirements before continuing</a></strong></p>
+
+<div class="Attention">
+  <strong>OpenGL 3.x / DirectX 10 Level Hardware</strong>
+  <p>
+    This chapter is 100% compatible with OpenGL 3.x level hardware by changing
+    only a few lines of code.
+  </p>
+</div>
+
+<h1>The Problem</h1>
+
+<p>Let's say we wanted to draw the following shape onto the screen, each of the
+spoke’s vertices (marked by P<sup>n</sup>) a different color:</p>
+
+<p><img src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/C3I1.png" alt="The basic shape" title="The basic shape" class="center"></p>
+
+<h2>Using GL_TRIANGLES</h2>
+
+<p>If we were to use the previous chapter’s code, we’d have to draw out 16
+individual triangles composed of 48 vertices in total using the <code>GL_TRIANGLES</code>
+primitive type since we describe each triangle separately. This means that each
+set of three vertices in your array describes a single independent triangle. You
+can see an example of this in file <code>chapter.3.0.1.c</code> in the download section at
+the end of this chapter.</p>
+
+<p>In this example, P<sup>0</sup> (origin) is duplicated 8 times in total, the
+center vertices P<sup>3</sup>, P<sup>7</sup>, P<sup>11</sup>, and P<sup>15</sup>
+are duplicated 4 times each. If this seems like overkill to you for such a
+simple shape, you’re right; there are better ways of describing it.</p>
+
+<p><strong>Amount of data sent to GPU memory using <code>GL_TRIANGLES</code>:</strong><br>
+(size of <code>Vertex</code>) 32 bytes x 48 = 1,536 bytes.</p>
+
+<h2>Using GL_TRIANGLE_STRIP</h2>
+
+<p><img src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/C3I2.gif" alt="GL_TRIANGLE_STRIP" title="GL_TRIANGLE_STRIP" class="right"></p>
+
+<p>The <code>GL_TRIANGLE_STRIP</code> primitive mode is a bit better when it comes to sheer
+number of vertices sent to the GPU, since we only send 28 in total. However,
+there’s still unneeded duplication, and the way in which we traverse the
+vertices is a bit cumbersome due to the way that <code>GL_TRIANGLE_STRIP</code> works.</p>
+
+<p>The <code>GL_TRIANGLE_STRIP</code> primitive type creates triangles out of every newly
+added vertex and its preceding two vertices. In the animation, P<sup>0</sup> to
+P<sup>1</sup> doesn’t yield a triangle, but after we add P<sup>3</sup>, a
+triangle forms. Each vertex after the addition of P<sup>3</sup> yields a new
+triangle.</p>
+
+<p>In addition to the unneeded duplication (notice P<sup>3</sup> →
+P<sup>4</sup> → P<sup>3</sup>) and the amount of data sent over, there’s
+also no way of changing the order in which we draw the vertices besides
+uploading a completely new batch of data.</p>
+
+<p><strong>Amount of data sent to GPU memory using <code>GL_TRIANGLE_STRIP</code>:</strong><br>
+(size of <code>Vertex</code>) 32 bytes x 28 = 896 bytes.</p>
+
+<h1>Enter Index Buffers</h1>
+
+<p>So far, we’ve been drawing our geometry with a call to <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawArrays" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawArrays</span></code>, which
+simply draws a certain subset of elements from the currently active vertex
+buffer object. Let’s explore a new way of drawing by walking through some new
+code. Make a copy of <code>chapter.2.4.c</code> from the previous chapter and name it
+<code>chapter.3.1.c</code>.</p>
+
+<p>Since we’re in chapter two of the book, change the <code>WINDOW_TITLE_PREFIX</code>
+pre-processor definition to reflect Chapter 3.</p>
+
+<p>Next, change <code>CurrentWidth</code> to have an initial value of 600:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241324.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241324" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-1-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-1-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-1-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">int</span></td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-1-c-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-chapter-3-1-c-LC2" class="blob-code blob-code-inner js-file-line">  CurrentWidth = <span class="pl-c1">600</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-1-c-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-chapter-3-1-c-LC3" class="blob-code blob-code-inner js-file-line">  CurrentHeight = <span class="pl-c1">600</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-1-c-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-chapter-3-1-c-LC4" class="blob-code blob-code-inner js-file-line">  WindowHandle = <span class="pl-c1">0</span>;</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241324/raw/7d87385e35376209bdf164a3d5a1c700ae52b8d3/chapter.3.1.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241324#file-chapter-3-1-c">chapter.3.1.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Add a new identifier named <code>IndexBufferId</code> to our list of global identifier
+variable declarations:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241333.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241333" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-2-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-2-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-2-c-LC1" class="blob-code blob-code-inner js-file-line">GLuint</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-2-c-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-chapter-3-2-c-LC2" class="blob-code blob-code-inner js-file-line">  VertexShaderId,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-2-c-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-chapter-3-2-c-LC3" class="blob-code blob-code-inner js-file-line">  FragmentShaderId,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-2-c-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-chapter-3-2-c-LC4" class="blob-code blob-code-inner js-file-line">  ProgramId,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-2-c-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-chapter-3-2-c-LC5" class="blob-code blob-code-inner js-file-line">  VaoId,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-2-c-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-chapter-3-2-c-LC6" class="blob-code blob-code-inner js-file-line">  BufferId,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-2-c-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-chapter-3-2-c-LC7" class="blob-code blob-code-inner js-file-line">  IndexBufferId;</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241333/raw/bd9f0ca67c9f795f57d8b1d7c6b90cc734edb1a6/chapter.3.2.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241333#file-chapter-3-2-c">chapter.3.2.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Remove the call to <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawArrays" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawArrays</span></code> in <code>RenderFunction</code> and replace it with the
+following line:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241348.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241348" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-3-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-3-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-3-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glDrawElements</span>(GL_TRIANGLES, <span class="pl-c1">48</span>, GL_UNSIGNED_BYTE, (GLvoid*)0);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241348/raw/2ea6ceee2910fd96943cdbf34f55fe69645097e3/chapter.3.3.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241348#file-chapter-3-3-c">chapter.3.3.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Here’s the big change, change the <code>Vertices</code> variable in <code>CreateVBO</code> to the following:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241367.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241367" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-4-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-4-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-4-c-LC1" class="blob-code blob-code-inner js-file-line">Vertex Vertices[] =</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-chapter-3-4-c-LC2" class="blob-code blob-code-inner js-file-line">{</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-chapter-3-4-c-LC3" class="blob-code blob-code-inner js-file-line">	{ { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-chapter-3-4-c-LC4" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> Top</span></td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-chapter-3-4-c-LC5" class="blob-code blob-code-inner js-file-line">	{ { -<span class="pl-c1">0</span>.<span class="pl-c1">2f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">8f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-chapter-3-4-c-LC6" class="blob-code blob-code-inner js-file-line">	{ { <span class="pl-c1">0</span>.<span class="pl-c1">2f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">8f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-chapter-3-4-c-LC7" class="blob-code blob-code-inner js-file-line">	{ { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">8f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-chapter-3-4-c-LC8" class="blob-code blob-code-inner js-file-line">	{ { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-chapter-3-4-c-LC9" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> Bottom</span></td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-chapter-3-4-c-LC10" class="blob-code blob-code-inner js-file-line">	{ { -<span class="pl-c1">0</span>.<span class="pl-c1">2f</span>, -<span class="pl-c1">0</span>.<span class="pl-c1">8f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-chapter-3-4-c-LC11" class="blob-code blob-code-inner js-file-line">	{ { <span class="pl-c1">0</span>.<span class="pl-c1">2f</span>, -<span class="pl-c1">0</span>.<span class="pl-c1">8f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-chapter-3-4-c-LC12" class="blob-code blob-code-inner js-file-line">	{ { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, -<span class="pl-c1">0</span>.<span class="pl-c1">8f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-chapter-3-4-c-LC13" class="blob-code blob-code-inner js-file-line">	{ { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, -<span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-chapter-3-4-c-LC14" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> Left</span></td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-chapter-3-4-c-LC15" class="blob-code blob-code-inner js-file-line">	{ { -<span class="pl-c1">0</span>.<span class="pl-c1">8f</span>, -<span class="pl-c1">0</span>.<span class="pl-c1">2f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-chapter-3-4-c-LC16" class="blob-code blob-code-inner js-file-line">	{ { -<span class="pl-c1">0</span>.<span class="pl-c1">8f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">2f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-chapter-3-4-c-LC17" class="blob-code blob-code-inner js-file-line">	{ { -<span class="pl-c1">0</span>.<span class="pl-c1">8f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-chapter-3-4-c-LC18" class="blob-code blob-code-inner js-file-line">	{ { -<span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-chapter-3-4-c-LC19" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> Right</span></td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-chapter-3-4-c-LC20" class="blob-code blob-code-inner js-file-line">	{ { <span class="pl-c1">0</span>.<span class="pl-c1">8f</span>, -<span class="pl-c1">0</span>.<span class="pl-c1">2f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-chapter-3-4-c-LC21" class="blob-code blob-code-inner js-file-line">	{ { <span class="pl-c1">0</span>.<span class="pl-c1">8f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">2f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-chapter-3-4-c-LC22" class="blob-code blob-code-inner js-file-line">	{ { <span class="pl-c1">0</span>.<span class="pl-c1">8f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } },</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-chapter-3-4-c-LC23" class="blob-code blob-code-inner js-file-line">	{ { <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> }, { <span class="pl-c1">1</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">0</span>.<span class="pl-c1">0f</span>, <span class="pl-c1">1</span>.<span class="pl-c1">0f</span> } }</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-4-c-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-chapter-3-4-c-LC24" class="blob-code blob-code-inner js-file-line">};</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241367/raw/c99a2aaa9333a16afd8aa4201400756b618674a8/chapter.3.4.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241367#file-chapter-3-4-c">chapter.3.4.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Immediately beneath <code>Vertices</code>, add the following array definition:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241385.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241385" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-5-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-5-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-5-c-LC1" class="blob-code blob-code-inner js-file-line">GLubyte Indices[] = {</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-chapter-3-5-c-LC2" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> Top</span></td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-chapter-3-5-c-LC3" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">3</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-chapter-3-5-c-LC4" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">0</span>, <span class="pl-c1">3</span>, <span class="pl-c1">2</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-chapter-3-5-c-LC5" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">3</span>, <span class="pl-c1">1</span>, <span class="pl-c1">4</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-chapter-3-5-c-LC6" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">3</span>, <span class="pl-c1">4</span>, <span class="pl-c1">2</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-chapter-3-5-c-LC7" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> Bottom</span></td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-chapter-3-5-c-LC8" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">0</span>, <span class="pl-c1">5</span>, <span class="pl-c1">7</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-chapter-3-5-c-LC9" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">0</span>, <span class="pl-c1">7</span>, <span class="pl-c1">6</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-chapter-3-5-c-LC10" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">7</span>, <span class="pl-c1">5</span>, <span class="pl-c1">8</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-chapter-3-5-c-LC11" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">7</span>, <span class="pl-c1">8</span>, <span class="pl-c1">6</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-chapter-3-5-c-LC12" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> Left</span></td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-chapter-3-5-c-LC13" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">0</span>, <span class="pl-c1">9</span>, <span class="pl-c1">11</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-chapter-3-5-c-LC14" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">0</span>, <span class="pl-c1">11</span>, <span class="pl-c1">10</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-chapter-3-5-c-LC15" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">11</span>, <span class="pl-c1">9</span>, <span class="pl-c1">12</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-chapter-3-5-c-LC16" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">11</span>, <span class="pl-c1">12</span>, <span class="pl-c1">10</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-chapter-3-5-c-LC17" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> Right</span></td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-chapter-3-5-c-LC18" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">0</span>, <span class="pl-c1">13</span>, <span class="pl-c1">15</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-chapter-3-5-c-LC19" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">0</span>, <span class="pl-c1">15</span>, <span class="pl-c1">14</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-chapter-3-5-c-LC20" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">15</span>, <span class="pl-c1">13</span>, <span class="pl-c1">16</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-chapter-3-5-c-LC21" class="blob-code blob-code-inner js-file-line">	<span class="pl-c1">15</span>, <span class="pl-c1">16</span>, <span class="pl-c1">14</span></td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-5-c-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-chapter-3-5-c-LC22" class="blob-code blob-code-inner js-file-line">};</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241385/raw/b1c2d78a7019741e1b5e43aeb2db3be3d5c88140/chapter.3.5.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241385#file-chapter-3-5-c">chapter.3.5.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>At the end of the <code>CreateVBO</code> function, right below the last call to <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glEnableVertexAttribArray" style="cursor: help; color: rgb(0, 102, 153); border-bottom: 1px solid rgb(0, 102, 153);">glEnableVertexAttribArray</span></code>, add the following lines of code:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241411.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241411" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-6-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-6-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-6-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glGenBuffers</span>(<span class="pl-c1">1</span>, &amp;IndexBufferId);</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-6-c-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-chapter-3-6-c-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glBindBuffer</span>(GL_ELEMENT_ARRAY_BUFFER, IndexBufferId);</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-6-c-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-chapter-3-6-c-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glBufferData</span>(GL_ELEMENT_ARRAY_BUFFER, <span class="pl-k">sizeof</span>(Indices), Indices, GL_STATIC_DRAW);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241411/raw/f6df9f65127f0b083d506058b939831c5e876fe4/chapter.3.6.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241411#file-chapter-3-6-c">chapter.3.6.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Finally, add the following lines of code between the <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDeleteBuffers" style="cursor: help; color: rgb(0, 102, 153); border-bottom: 1px solid rgb(0, 102, 153);">glDeleteBuffers</span></code> and <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glBindVertexArray" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glBindVertexArray</span></code> lines of the <code>DestroyVBO</code> function:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241418.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241418" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-7-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-7-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-7-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glBindBuffer</span>(GL_ELEMENT_ARRAY_BUFFER, <span class="pl-c1">0</span>);</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-7-c-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-chapter-3-7-c-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glDeleteBuffers</span>(<span class="pl-c1">1</span>, &amp;IndexBufferId);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241418/raw/f5c57c835b400a7faccfd2377567aa7ab5b2a822/chapter.3.7.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241418#file-chapter-3-7-c">chapter.3.7.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Your output should look like:</p>
+
+<p><img src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/C3I3.png" alt="Resulting Output" title="Resulting Output" class="center"></p>
+
+<h2>Step-By-Step</h2>
+
+<p>If you’ve analyzed the code a bit, you’ll notice that we upload each vertex
+exactly once to the GPU instead of 48 vertices including duplicates. Let’s walk
+through the code and take a good look at what we did here.</p>
+
+<p>The first changes were purely aesthetic: as always, we changed the window title
+to reflect this chapter and made the window a perfect square for the geometry to
+show up symmetrical. In the next chapter, we’ll introduce a method that doesn’t
+require you to reshape your window to achieve symmetry.</p>
+
+<p>The next thing we add is the <code>IndexBufferId</code> variable to the global list of
+variables. This variable will hold the buffer’s identifier generated by a call
+to <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glGenBuffers" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glGenBuffers</span></code>, similar to vertex buffer generation in the previous chapter.</p>
+
+<h3>Modifying Vertices and Adding Indices</h3>
+
+<p>After that, we modify the <code>CreateVBO</code> function and replace its <code>Vertices</code> array
+with an array of 17 total vertices. If we were to use <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawArrays" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawArrays</span></code> on this VBO
+without indices, we would not output the desired shape as illustrated earlier.
+Instead, we have to define one more array, named <code>Indices</code>, to hold the indices
+of the elements in <code>Vertices</code> in drawing order.</p>
+
+<p>For example, the first three indices 0, 1, and 3, correspond directly with the
+first, fourth, and second elements in the <code>Vertices</code> array, composing the
+left-bottom triangle of the shape’s top spoke. In total, we upload 48 indices
+since each spoke consists of four triangles (3 x 4 x 4).</p>
+
+<p><code>Indices</code> is defined as a <code>GLubyte</code> array of 48 elements; <code>GLubyte</code> is the
+OpenGL data type for an unsigned byte (<code>unsigned char</code>). You could use any of
+the following unsigned integral OpenGL data types: <code>GLubyte</code>, <code>GLushort</code>, and
+<code>GLuint</code>, since indices are never negative (signed) or fractional
+(float/double).</p>
+
+<h3>Index Buffer Generation, Binding, and Filling</h3>
+
+<p>The final thing inside of the <code>CreateVBO</code> function is to generate the actual
+index buffer with a familiar call to the <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glGenBuffers" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glGenBuffers</span></code>, nothing new there. It
+isn’t until the next function call to <code>glBindBuffers</code> that we specify a brand
+new target that we haven’t used before.</p>
+
+<p>Until now, we’ve only supplied the <code>GL_ARRAY_BUFFER</code> target to <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glBindBuffer" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glBindBuffer</span></code> to
+specify that the buffer is an array of vertices. While we still upload our
+vertices in this manner, our newly generated buffer is bound to the
+<code>GL_ELEMENT_ARRAY_BUFFER</code> target that allows us to specify which vertices in the
+active <code>GL_ARRAY_BUFFER</code> we’re using.</p>
+
+<p>The call to <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glBufferData" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glBufferData</span></code> should also look very similar to last chapter’s code;
+we introduce no new options here besides the usage of the
+<code>GL_ELEMENT_ARRAY_BUFFER</code> target flag.</p>
+
+<h3>Rendering the Indexed Vertex Buffer Object</h3>
+
+<p>In the code, we removed the call to <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawArrays" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawArrays</span></code> and replaced it with a call
+to a function called <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawElements" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawElements</span></code>. Whereas <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawArrays" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawArrays</span></code> only draws the
+active <code>GL_ARRAY_BUFFER</code>, <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawElements" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawElements</span></code> draws the indices of the active
+<code>GL_ARRAY_BUFFER</code> as specified by the buffer bound to the
+<code>GL_ELEMENT_ARRAY_BUFFER</code> target. Let’s take a closer look at the
+<code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawElements" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawElements</span></code> function:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241470.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241470" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-8-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-8-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-8-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">void</span> <span class="pl-en">glDrawElements</span>(</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-8-c-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-chapter-3-8-c-LC2" class="blob-code blob-code-inner js-file-line">  GLenum mode,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-8-c-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-chapter-3-8-c-LC3" class="blob-code blob-code-inner js-file-line">  GLsizei count,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-8-c-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-chapter-3-8-c-LC4" class="blob-code blob-code-inner js-file-line">  GLenum type,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-8-c-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-chapter-3-8-c-LC5" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">const</span> GLvoid* indices</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-8-c-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-chapter-3-8-c-LC6" class="blob-code blob-code-inner js-file-line">);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241470/raw/37d6d9af4a9391ef5812edc97cc6aa6a70e10c6a/chapter.3.8.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241470#file-chapter-3-8-c">chapter.3.8.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>The first parameter, <code>mode</code>, takes in the primitive mode to use such as
+<code>GL_TRIANGLES</code> or <code>GL_TRIANGLE_STRIP</code>; the same as the <code>mode</code> parameter of
+<code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawArrays" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawArrays</span></code>.</p>
+
+<p>The second parameter, <code>count</code>, specifies how many elements in total to draw. In
+our case, this value is 48 since that’s the amount of indices in the <code>Indices</code>
+array.</p>
+
+<p>The third parameter, <code>type</code>, specifies which data type was used for the index
+array. In our case, this is <code>GL_UNSIGNED_BYTE</code>, since we used the <code>GLubyte</code> data
+type to construct the <code>Indices</code> array. Please note that this type <strong>must</strong>
+reflect the data type used to construct the array containing the indices.</p>
+
+<p>The fourth and last parameter, <code>indices</code>, specifies the offset in bytes in the
+index array of where we want to start rendering, allowing us to render subsets
+of the vertex data. For example, if we wished to draw just the right-hand spoke
+of the shape, we’d call the <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawElements" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawElements</span></code> function with the following parameters:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241491.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241491" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-9-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-9-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-9-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glDrawElements</span>(GL_TRIANGLES, <span class="pl-c1">12</span>, GL_UNSIGNED_BYTE, (GLvoid*)(<span class="pl-k">sizeof</span>(GLubyte) * 36));</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241491/raw/a9ee45ace702a83cf8544ca96979dc45fe2206e3/chapter.3.9.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241491#file-chapter-3-9-c">chapter.3.9.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>In this function call, we draw 12 vertices starting at index offset 36 of the
+index buffer, corresponding to the vertices in the <code>Indices</code> array. Make sure to
+change the parameters in <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawElements" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawElements</span></code> according to the type of index buffer
+you're using. For example, if we were to use an index buffer containing unsigned
+integers (<code>GLuint</code>), we'd have to change the above function call to the
+following:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241498.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241498" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-10-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-10-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-10-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glDrawElements</span>(GL_TRIANGLES, <span class="pl-c1">12</span>, GL_UNSIGNED_INT, (GLvoid*)(<span class="pl-k">sizeof</span>(GLuint) * 36));</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241498/raw/0b48aa2cea8a6b2f01cf2592c80ae130d5c0d09a/chapter.3.10.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241498#file-chapter-3-10-c">chapter.3.10.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p><strong>Amount of data sent to GPU memory using Index Buffers:</strong><br>
+(size of <code>Vertex</code>) 32 bytes x 17 + 1 <code>GLubyte</code> x 48 = 592 bytes.</p>
+
+<h1>Swapping Index Buffers</h1>
+
+<p>Sometimes it is not possible to avoid having to change the indices you wish to
+render, in which case it is possible to swap the active index buffer by simply
+changing the buffer bound to the <code>GL_ELEMENT_ARRAY_BUFFER</code> target.</p>
+
+<p>Make a copy of <code>chapter.3.1.c</code> rename it to <code>chapter.3.2.c</code> and open it up in your
+editor. The first thing we do is change the block of global <code>GLuint</code> variable
+definitions to look like this:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241522.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241522" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-11-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-11-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-11-c-LC1" class="blob-code blob-code-inner js-file-line">GLuint</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-11-c-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-chapter-3-11-c-LC2" class="blob-code blob-code-inner js-file-line">  VertexShaderId,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-11-c-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-chapter-3-11-c-LC3" class="blob-code blob-code-inner js-file-line">  FragmentShaderId,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-11-c-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-chapter-3-11-c-LC4" class="blob-code blob-code-inner js-file-line">  ProgramId,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-11-c-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-chapter-3-11-c-LC5" class="blob-code blob-code-inner js-file-line">  VaoId,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-11-c-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-chapter-3-11-c-LC6" class="blob-code blob-code-inner js-file-line">  BufferId,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-11-c-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-chapter-3-11-c-LC7" class="blob-code blob-code-inner js-file-line">  IndexBufferId[<span class="pl-c1">2</span>],</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-11-c-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-chapter-3-11-c-LC8" class="blob-code blob-code-inner js-file-line">  ActiveIndexBuffer = <span class="pl-c1">0</span>;</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241522/raw/5b2f5b469ab5fd5fa6a4a0debd2b75a6ae917436/chapter.3.11.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241522#file-chapter-3-11-c">chapter.3.11.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Next, add the following function declaration right underneath the <code>IdleFunction</code>
+function declaration:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241533.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241533" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-12-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-12-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-12-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">void</span> <span class="pl-en">KeyboardFunction</span>(<span class="pl-k">unsigned</span> <span class="pl-k">char</span>, <span class="pl-k">int</span>, <span class="pl-k">int</span>);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241533/raw/479222be515c609c9567af6c7e232a8b3d7eb742/chapter.3.12.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241533#file-chapter-3-12-c">chapter.3.12.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>In the <code>InitWindow</code> function definition, add the following line underneath the
+call to <code>glutCloseFunc</code>:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241553.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241553" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-13-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-13-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-13-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glutKeyboardFunc</span>(KeyboardFunction);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241553/raw/c1d05aa89465255ec56341c591ec78af44d99400/chapter.3.13.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241553#file-chapter-3-13-c">chapter.3.13.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Add the following function definition right below the <code>InitWindow</code> function
+definition:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241569.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241569" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-14-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-14-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-14-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">void</span> <span class="pl-en">KeyboardFunction</span>(<span class="pl-k">unsigned</span> <span class="pl-k">char</span> Key, <span class="pl-k">int</span> X, <span class="pl-k">int</span> Y)</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-chapter-3-14-c-LC2" class="blob-code blob-code-inner js-file-line">{</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-chapter-3-14-c-LC3" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">switch</span> (Key)</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-chapter-3-14-c-LC4" class="blob-code blob-code-inner js-file-line">	{</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-chapter-3-14-c-LC5" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">case</span> <span class="pl-s"><span class="pl-pds">'</span>T<span class="pl-pds">'</span></span>:</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-chapter-3-14-c-LC6" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">case</span> <span class="pl-s"><span class="pl-pds">'</span>t<span class="pl-pds">'</span></span>:</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-chapter-3-14-c-LC7" class="blob-code blob-code-inner js-file-line">		{</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-chapter-3-14-c-LC8" class="blob-code blob-code-inner js-file-line">			ActiveIndexBuffer = (ActiveIndexBuffer == <span class="pl-c1">1</span> ? <span class="pl-c1">0</span> : <span class="pl-c1">1</span>);</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-chapter-3-14-c-LC9" class="blob-code blob-code-inner js-file-line">			<span class="pl-c1">glBindBuffer</span>(GL_ELEMENT_ARRAY_BUFFER, IndexBufferId[ActiveIndexBuffer]);</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-chapter-3-14-c-LC10" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">break</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-chapter-3-14-c-LC11" class="blob-code blob-code-inner js-file-line">		}</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-chapter-3-14-c-LC12" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">default</span>:</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-chapter-3-14-c-LC13" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">break</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-chapter-3-14-c-LC14" class="blob-code blob-code-inner js-file-line">	}</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-14-c-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-chapter-3-14-c-LC15" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241569/raw/410ab8032c4e6738a04c8588e2ab8219935e3dfc/chapter.3.14.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241569#file-chapter-3-14-c">chapter.3.14.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Next, we need to make some changes to the rendering, <code>RenderFunction</code>, to
+facilitate the changes we've made. Replace the call to <span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawElements" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawElements</span> with the
+following code:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241580.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241580" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-15-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-15-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-15-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">if</span> (ActiveIndexBuffer == <span class="pl-c1">0</span>) {</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-15-c-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-chapter-3-15-c-LC2" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">glDrawElements</span>(GL_TRIANGLES, <span class="pl-c1">48</span>, GL_UNSIGNED_BYTE, <span class="pl-c1">NULL</span>);</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-15-c-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-chapter-3-15-c-LC3" class="blob-code blob-code-inner js-file-line">} <span class="pl-k">else</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-15-c-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-chapter-3-15-c-LC4" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">glDrawElements</span>(GL_TRIANGLES, <span class="pl-c1">36</span>, GL_UNSIGNED_BYTE, <span class="pl-c1">NULL</span>);</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-15-c-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-chapter-3-15-c-LC5" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241580/raw/209d28f5272fb37bfd7b92746dcb171fe40ebaa9/chapter.3.15.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241580#file-chapter-3-15-c">chapter.3.15.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Inside of the <code>CreateVBO</code> function right underneath the <code>Indices</code> array
+definition, place the following code:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241598.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241598" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-16-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-16-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-16-c-LC1" class="blob-code blob-code-inner js-file-line">GLubyte AlternateIndices[] = {</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-chapter-3-16-c-LC2" class="blob-code blob-code-inner js-file-line">  <span class="pl-c"><span class="pl-c">//</span> Outer square border:</span></td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-chapter-3-16-c-LC3" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">3</span>, <span class="pl-c1">4</span>, <span class="pl-c1">16</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-chapter-3-16-c-LC4" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">3</span>, <span class="pl-c1">15</span>, <span class="pl-c1">16</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-chapter-3-16-c-LC5" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">15</span>, <span class="pl-c1">16</span>, <span class="pl-c1">8</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-chapter-3-16-c-LC6" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">15</span>, <span class="pl-c1">7</span>, <span class="pl-c1">8</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-chapter-3-16-c-LC7" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">7</span>, <span class="pl-c1">8</span>, <span class="pl-c1">12</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-chapter-3-16-c-LC8" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">7</span>, <span class="pl-c1">11</span>, <span class="pl-c1">12</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-chapter-3-16-c-LC9" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">11</span>, <span class="pl-c1">12</span>, <span class="pl-c1">4</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-chapter-3-16-c-LC10" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">11</span>, <span class="pl-c1">3</span>, <span class="pl-c1">4</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-chapter-3-16-c-LC11" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-chapter-3-16-c-LC12" class="blob-code blob-code-inner js-file-line">  <span class="pl-c"><span class="pl-c">//</span> Inner square</span></td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-chapter-3-16-c-LC13" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">0</span>, <span class="pl-c1">11</span>, <span class="pl-c1">3</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-chapter-3-16-c-LC14" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">0</span>, <span class="pl-c1">3</span>, <span class="pl-c1">15</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-chapter-3-16-c-LC15" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">0</span>, <span class="pl-c1">15</span>, <span class="pl-c1">7</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-chapter-3-16-c-LC16" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">0</span>, <span class="pl-c1">7</span>, <span class="pl-c1">11</span></td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-16-c-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-chapter-3-16-c-LC17" class="blob-code blob-code-inner js-file-line">};</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241598/raw/1e8f6d0325fe168306372e9db244ba6ba5027cde/chapter.3.16.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241598#file-chapter-3-16-c">chapter.3.16.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Inside of the same function, change the call to generate the index buffers to
+the following:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241612.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241612" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-17-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-17-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-17-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glGenBuffers</span>(<span class="pl-c1">2</span>, IndexBufferId);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241612/raw/565e0a22b52f0882a535934c3b2dc673a376faba/chapter.3.17.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241612#file-chapter-3-17-c">chapter.3.17.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Immediately after that, change the <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glBindBuffer" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glBindBuffer</span></code> function call to the
+following:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241628.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241628" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-19-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-19-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-19-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glBindBuffer</span>(GL_ELEMENT_ARRAY_BUFFER, IndexBufferId[<span class="pl-c1">0</span>]);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241628/raw/9c903132a2790464407207240a75823a97cc16f8/chapter.3.19.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241628#file-chapter-3-19-c">chapter.3.19.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Right before the call to <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glGetError" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glGetError</span></code>, add the following block of code:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241637.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241637" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-20-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-20-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-20-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glBindBuffer</span>(GL_ELEMENT_ARRAY_BUFFER, IndexBufferId[<span class="pl-c1">1</span>]);</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-20-c-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-chapter-3-20-c-LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glBufferData</span>(GL_ELEMENT_ARRAY_BUFFER, <span class="pl-k">sizeof</span>(AlternateIndices), AlternateIndices, GL_STATIC_DRAW);</td>
+      </tr>
+      <tr>
+        <td id="file-chapter-3-20-c-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-chapter-3-20-c-LC3" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glBindBuffer</span>(GL_ELEMENT_ARRAY_BUFFER, IndexBufferId[<span class="pl-c1">0</span>]);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241637/raw/104ae0f55e0e66e391aea86ac7783ab199ec9522/chapter.3.20.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241637#file-chapter-3-20-c">chapter.3.20.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>Finally, in the <code>DestroyVBO</code> function, change the <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDeleteBuffers" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDeleteBuffers</span></code> call with
+<code>IndexBufferId</code> as its parameter to the following:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241646.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241646" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-20-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-20-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-20-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glDeleteBuffers</span>(<span class="pl-c1">2</span>, IndexBufferId);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241646/raw/771b28e3807b28ba96f678cd8cdab9b632305f12/chapter.3.20.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241646#file-chapter-3-20-c">chapter.3.20.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>When you run the program and press the "T" key, you are able to toggle back and
+forth between the original shape and this new shape:</p>
+
+<p><img src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/C3I4.png" alt="Resulting Output" title="Resulting Output" class="center"></p>
+
+<h2>Step-By-Step</h2>
+
+<p>With only a few minor changes, we were able to draw an entirely new shape out of 
+he same set of vertices. The only thing we did to achieve this was swap the
+index buffers. If you examined the code, you’ll notice that we’ve covered all of
+the functionality used in this sample before, so we’ll just glance over some of
+the highlights.</p>
+
+<p>In this sample, we changed the amount of index buffers generated to two to
+contain an alternate index buffer for our swapping purposes. In the <code>CreateVBO</code>
+function, we updated <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glGenBuffers" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glGenBuffers</span></code> to generate two buffer objects and store
+their identifiers in the array <code>IndexBufferId</code>, which now contains two elements.</p>
+
+<p>After that, we upload the new indices stored in <code>AlternateIndices</code> to the GPU’s
+memory using <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glBufferData" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glBufferData</span></code> as usual and set the current active index buffer
+back to the original.</p>
+
+<p>We also added some new FreeGLUT functionality for handling keyboard input:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241687.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241687" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-21-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-21-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-21-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">void</span> <span class="pl-en">KeyboardFunction</span>(<span class="pl-k">unsigned</span> <span class="pl-k">char</span> Key, <span class="pl-k">int</span> X, <span class="pl-k">int</span> Y);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241687/raw/a1865a215eeadde1549f0f313598536798c65f13/chapter.3.21.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241687#file-chapter-3-21-c">chapter.3.21.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>The <code>Key</code> parameter contains the character representation of the key pressed,
+while the <code>X</code> and <code>Y</code> parameters contain the mouse positions relative to the
+window at the time of the key-press. The only thing we do in this function is
+toggle back and forth between index buffers while retaining the same vertex
+data.</p>
+
+<p>We register the call to this function in the <code>InitWindow</code> function with a call
+to <code>glutKeyBoardFunc</code>, which takes in as its only parameter a function pointer,
+just as any other FreeGLUT callback functions do.</p>
+
+<h1>More Primitive Types</h1>
+
+<p>Until now, we’ve only discussed <code>GL_TRIANGLES</code> and <code>GL_TRIANGLE_STRIP</code> as
+methods to describe geometry. However, there are several more so-called
+"primitive types" available in OpenGL, each of which alters the output in a
+different way. In this section, we’ll discuss a few more.</p>
+
+<div class="FYI">
+  <strong>Primitives</strong>
+  <p>
+    A "primitive" is the smallest component of a geometrical shape. So far,
+    we’ve used triangles as our primitive types but OpenGL supports two others:
+    points and line segments.
+  </p>
+</div>
+
+<h2>GL_POINTS</h2>
+
+<p>The first and simplest primitive type is <code>GL_POINTS</code>, where each vertex
+specifies a visible point in space. When using <code>GL_POINTS</code>, OpenGL will draw
+simple points onto the screen. For example, change the <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawElements" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawElements</span></code> in
+<code>chapter.3.1.c</code> to use <code>GL_POINTS</code> instead of <code>GL_TRIANGLES</code>, and each vertex
+will show up as a colored one-pixel point.</p>
+
+<p>You can change the point-size with the function <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glPointSize" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glPointSize</span></code>, which simply
+takes in a single parameter, size, specifying the size of the points as a
+floating-point number.</p>
+
+<h2>GL<em>LINE</em>STRIP</h2>
+
+<p>The second primitive type is <code>GL_LINE_STRIP</code>, which allows us to draw lines
+between vertices. <code>GL_LINE_STRIP</code> works much like <code>GL_TRIANGLE_STRIP</code>, where
+each new vertex adds to the overall line instead of defining a brand new line
+every two vertices.</p>
+
+<p>To try this primitive type, add one more index to 0 at the very end of the index
+array named <code>Indices</code> in <code>chapter.3.1.c</code>, and change the call to <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glDrawElements" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glDrawElements</span></code>
+to the following:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241702.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241702" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-22-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-22-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-22-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-en">glDrawElements</span>(GL_LINE_STRIP, <span class="pl-c1">49</span>, GL_UNSIGNED_BYTE, (GLvoid*)0);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241702/raw/63c01f8fd8679b2ac113d50818ab6eafaf331c58/chapter.3.22.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241702#file-chapter-3-22-c">chapter.3.22.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>You should now see the outline of the shape described at the beginning of the
+chapter.</p>
+
+<h2>GL_LINE_LOOP</h2>
+
+<p>The third primitive type, <code>GL_LINE_LOOP</code> is very similar to <code>GL_LINE_STRIP</code> with
+the exception that it closes the line segment by drawing a line between the last
+vertex and the first. Whereas we added one more index to <code>Indices</code> for
+<code>GL_LINE_STRIP</code>, we would not have to do this with <code>GL_LINE_LOOP</code>.</p>
+
+<h2>GL_LINES</h2>
+
+<p><code>GL_LINES</code> is to lines what <code>GL_TRIANGLES</code> is to triangles, meaning that
+<code>GL_LINES</code> describes separate, unconnected lines. However, since a line consists
+of two points instead of the three required by a triangle, changing the sample
+in <code>chapter.3.1.c</code> does not yield a desired result. We would have to modify the
+index array extensively in order to get the correct results.</p>
+
+<h2>GL_TRIANGLE_FAN</h2>
+
+<p>The last primitive type to discuss in this section is <code>GL_TRIANGLE_FAN</code>, a close
+relative to the well-known <code>GL_TRIANGLE_STRIP</code>. Whereas <code>GL_TRIANGLE_STRIP</code>
+constructs a new triangle by connecting the last three points added to the list,
+<code>GL_TRIANGLE_FAN</code> constructs a new triangle from the very first point and the
+last two points added, resulting in a fan-like shape. This means that every new
+triangle is connected to the very first added to the list.</p>
+
+<p>There is no correct way of drawing the shapes presented in this chapter using
+<code>GL_TRIANGLE_FAN</code>, but this primitive type is useful for drawing center-oriented
+polygons, such as a pentagon with all of its vertices connecting in the center.</p>
+
+<h2>Polygon Rasterization Modes</h2>
+
+<p>If you’re looking to display your geometry as a wireframe of its original,
+there’s no need to change its primitive type. The function <code><span onmouseover="this.style.color = &#39;#09f&#39;;" onclick="window.open(&#39;http://www.opengl.org/sdk/docs/man4/xhtml/&#39; + this.innerHTML + &#39;.xml&#39;, &#39;jsglhl&#39;);" onmouseout="this.style.color = &#39;#069&#39;;" title="Click here to go to the OpenGL manual entry for glPolygonMode" style="cursor:help; color: #069; border-bottom: 1px solid #069;">glPolygonMode</span></code> can
+take care of this by changing the method used to fill the triangles, a process
+called “rasterization” that we’ll explore in a future chapter:</p>
+
+<p><noscript>&amp;lt;pre&amp;gt;400: Invalid request
+&amp;lt;/pre&amp;gt;</noscript><script src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/11241729.js.download"> </script><link rel="stylesheet" href="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/gist-embed-58bf690c1b31045a2bc97800667413d4207a422315208a33f1d98eff67e6c2f8.css"></p><div id="gist11241729" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-chapter-3-23-c" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-c">
+      <table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-chapter-3-23-c-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-chapter-3-23-c-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">void</span> <span class="pl-en">glPolygonMode</span>(GLenum face, GLenum mode);</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+  
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/EddyLuten/11241729/raw/a452f24379f070d8e0d8a99c73d7b7bda9e0a3e3/chapter.3.23.c" style="float:right">view raw</a>
+        <a href="https://gist.github.com/EddyLuten/11241729#file-chapter-3-23-c">chapter.3.23.c</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+
+<p>The function’s first parameter, <code>face</code>, specifies which polygons of your
+geometry the function affects. As of OpenGL 3.0, this parameter may <strong>only</strong> be
+set to <code>GL_FRONT_AND_BACK</code>; we’ll learn more about front- and back-faces in a
+future chapter.</p>
+
+<p>The function’s second parameter, <code>mode</code>, specifies how the polygons are
+rasterized. This mode can be set to one of the following values:</p>
+
+<ul>
+<li><code>GL_POINT</code> Draws the geometry as points, related to the <code>GL_POINTS</code> primitive
+type.</li>
+<li><code>GL_LINE</code> Draws the geometry as lines (wireframe), related to the <code>GL_LINES</code>
+primitive type.</li>
+<li><code>GL_FILL</code> The default: draws each triangle filled with a solid color.</li>
+</ul>
+
+<p>Below follows a combination of three screenshots showing all of the different rasterization modes for the example shown earlier in this chapter:</p>
+
+<p><img src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/C3I5.png" alt="Resulting Output" title="Resulting Output" class="center"></p>
+
+<h1>Conclusion</h1>
+
+<p>Index Buffer Objects can be incredibly useful when dealing with complex shapes
+by limiting the amount of data sent to the GPU. The fact that many model formats
+provide their data in separate vertex and index sections only makes the decision
+to use index buffers more natural.</p>
+
+<p>In upcoming chapters, index buffers are the primary method to describe geometry,
+so try to get familiar with this chapter and modify the samples to draw some
+geometry of your own. In the
+<a href="http://openglbook.com/chapter-4-entering-the-third-dimension.html">next chapter</a>, we're
+drawing our first three-dimensional geometry.</p>
+
+<p>You can find the source code for the samples in this chapter
+<a href="https://github.com/openglbook/openglbook-samples/tree/master/chapter-3">here.</a></p>
+
+
+
+          <div class="footer">
+
+            <div class="contact">
+              <p>
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                  <img alt="Creative Commons License" style="border-width:0" src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/88x31.png">
+                </a>
+              </p>
+            </div>
+
+            <div class="contact">
+              <p>
+                If you were charged for a copy of this text,
+                <em>demand a refund</em>. This work is available free of charge
+                on <a href="http://openglbook.com/">openglbook.com</a>
+              </p>
+            </div>
+
+            <div class="contact">
+              <p>
+                <a href="https://github.com/openglbook">Fork us on GitHub</a>
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <a href="https://github.com/openglbook">
+          <img style="position: absolute; top: 0; right: 0; border: 0;" src="./Chapter 3_ Index Buffer Objects and Primitive Types _ OpenGLBook.com_files/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png">
+        </a>
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-301718-10', 'openglbook.com');
+          ga('send', 'pageview');
+        </script>
+    
+
+</body></html>

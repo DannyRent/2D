@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://www.cplusplus.com/reference/cctype/isdigit/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>isdigit - C++ Reference</title>
+<link rel="canonical" href="http://www.cplusplus.com/reference/cctype/isdigit/">
+<link rel="shortcut icon" type="image/x-icon" href="http://www.cplusplus.com/favicon.ico">
+<link rel="stylesheet" type="text/css" href="./isdigit_files/main.css">
+<script src="./isdigit_files/main.js.download" type="text/javascript"></script><style type="text/css">
+:root div[id^="mainads"],
+:root iframe[src^="http://static.mozo.com.au/strips/"],
+:root AMP-AD,
+:root [onclick*="content.ad/"],
+:root a[href*=".trust.zone"],
+:root input[onclick^="window.open('http://www.friendlyduck.com/"],
+:root input[onclick^="window.open('http://www.FriendlyDuck.com/"],
+:root topadblock,
+:root p[id^="div-gpt-ad-"],
+:root img[alt^="Fuckbook"],
+:root iframe[src^="http://cdn2.adexprt.com/"],
+:root iframe[src^="http://cdn1.adexprt.com/"],
+:root iframe[src^="http://ad.yieldmanager.com/"],
+:root iframe[id^="google_ads_iframe"],
+:root iframe[id^="google_ads_frame"],
+:root div[itemtype="http://www.schema.org/WPAdBlock"],
+:root div[itemtype="http://schema.org/WPAdBlock"],
+:root div[id^="q1-adset-"],
+:root div[id^="proadszone-"],
+:root div[id^="lazyad-"],
+:root div[id^="google_dfp_"],
+:root div[id^="google_ads_iframe_"],
+:root div[id^="dmRosAdWrapper"],
+:root div[id^="div_openx_ad_"],
+:root div[id^="div_ad_stack_"],
+:root div[id^="div-gpt-ad"],
+:root div[id^="div-adtech-ad-"],
+:root div[id^="dfp-slot-"],
+:root div[id^="dfp-ad-"],
+:root div[id^="crt-"][style],
+:root div[id^="cns_ads_"],
+:root div[id^="block-views-topheader-ad-block-"],
+:root div[id^="advads-"],
+:root div[id^="ads300_600-widget"],
+:root div[id^="ads300_250-widget"],
+:root div[id^="ads300_100-widget"],
+:root div[id^="ads250_250-widget"],
+:root div[id^="ads120_600-widget"],
+:root div[id^="adrotate_widgets-"],
+:root div[id^="ad_script_"],
+:root div[id^="ad-server-"],
+:root div[id^="acm-ad-tag-"],
+:root div[id^="YFBMSN"],
+:root div[id^="MarketGid"],
+:root div[id^="ADV-SLOT-"],
+:root div[class^="proadszone-"],
+:root div[class^="gemini-ad"],
+:root div[class^="BlockAdvert-"],
+:root bottomadblock,
+:root aside[id^="div-gpt-ad"],
+:root a[target="_blank"][onmousedown="this.href^='http://paid.outbrain.com/network/redir?"],
+:root a[target="_blank"][href^="http://api.taboola.com/"],
+:root a[style="display:block;width:300px;min-height:250px"][href^="http://li.cnet.com/click?"],
+:root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"][target="_blank"],
+:root a[onmousedown^="this.href='http://staffpicks.outbrain.com/network/redir?"][target="_blank"],
+:root a[onmousedown^="this.href='http://paid.outbrain.com/network/redir?"][target="_blank"],
+:root a[onmousedown^="this.href='/wp-content/embed-ad-content/"],
+:root [href^="https://understandsolar.com/signup/?lead_source="][href*="&tracking_code="],
+:root [href^="http://www.bet365.com/"][href*="?affiliate="],
+:root [href^="http://www.bet365.com/"][href*="&affiliate="],
+:root [href^="http://taboola-"][href*="/redirect.php?app.type="],
+:root [href^="http://games.ucoz.ru/"][target="_blank"],
+:root [href^="//www.mgid.com/"],
+:root [href^="//t.MtagMonetizationA.com/"],
+:root [href^="//srv.buysellads.com/"],
+:root [href^="//api.ad-goi.com/"],
+:root [href^="//ads.ad-center.com/"],
+:root [href^="//adbit.co/?a=Advertise&"],
+:root a[href*="onclkds."],
+:root a[href*="letsadvertisetogether.com"],
+:root a[href*="googleme.eu"],
+:root a[href*="emprestimo.eu"],
+:root a[href*="ad2upapp.com/"],
+:root a[href*="=Adtracker"],
+:root a[href*="/cmd.php?ad="],
+:root a[href*="/adrotate-out.php?"],
+:root a[href*=".qertewrt.com/"],
+:root a[href*=".adk2x.com/"],
+:root a[href$="/vghd.shtml"],
+:root a[data-widget-outbrain-redirect^="http://paid.outbrain.com/network/redir?"],
+:root a[data-url^="http://paid.outbrain.com/network/redir?"],
+:root a[data-redirect^="this.href='http://paid.outbrain.com/network/redir?"],
+:root a[data-redirect^="http://click.plista.com/pets"],
+:root a[data-obtrack^="http://paid.outbrain.com/network/redir?"],
+:root [onclick^="window.open('http://adultfriendfinder.com/search/"],
+:root [lazy-ad="lefttop_banner"],
+:root [ad-id^="googlead"],
+:root AFS-AD,
+:root ADS-RIGHT,
+:root [onclick="fileice();"],
+:root a[href*="://3wr110.xyz/"]
+{ display: none !important; }</style>
+<script>
+  (function() {
+    var useSSL = 'https:' == document.location.protocol;
+    var src = (useSSL ? 'https:' : 'http:') +
+        '//www.googletagservices.com/tag/js/gpt.js';
+    document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+  })();
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/32882001/L', [728, 90], 'div-gpt-ad-1473193443042-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().enableSyncRendering();
+    googletag.enableServices();
+  });
+</script>
+<style type="text/css">
+:root *[ho0rfx4][hidden] { display: none !important; }</style></head><script type="text/javascript">(function (canvas, canvasfont, audioblock, battery, webgl, webrtcdevice, gamepad, webvr, timezone, clientrects, clipboard){
+		function processFunctions(scope) {
+			/* Canvas */
+			if (canvas != 'false') {
+				var fakecanvas = scope.document.createElement('canvas');
+				fakecanvas.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_canvas';
+				if (canvas == 'random') {
+					var fakewidth = fakecanvas.width = Math.floor(Math.random() * 999) + 1;
+					var fakeheight = fakecanvas.height = Math.floor(Math.random() * 999) + 1;
+				}
+				var canvas_a = scope.HTMLCanvasElement;
+				var origToDataURL = canvas_a.prototype.toDataURL;
+				var origToBlob = canvas_a.prototype.toBlob;
+				canvas_a.prototype.toDataURL = function() {
+					fakecanvas.title = 'toDataURL';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origToDataURL.apply(fakecanvas, arguments);
+					} else if (canvas == 'random') {
+						return origToDataURL.apply(fakecanvas, arguments);
+					}
+				};
+				canvas_a.prototype.toBlob = function() {
+					fakecanvas.title = 'toBlob';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origToBlob.apply(fakecanvas, arguments);
+					} else if (canvas == 'random') {
+						return origToBlob.apply(fakecanvas, arguments);
+					}
+				};
+				var canvas_b = scope.CanvasRenderingContext2D;
+				var origGetImageData = canvas_b.prototype.getImageData;
+				canvas_b.prototype.getImageData = function() {
+					fakecanvas.title = 'getImageData';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origGetImageData.apply(fakecanvas.getContext('2d'), arguments);
+					} else if (canvas == 'random') {
+						return origGetImageData.apply(fakecanvas.getContext('2d'), [Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1, Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1]);
+					}
+				}
+				var origGetLineDash = canvas_b.prototype.getLineDash;
+				canvas_b.prototype.getLineDash = function() {
+					fakecanvas.title = 'getLineDash';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origGetLineDash.apply(fakecanvas.getContext('2d'), [0, 0]);
+					} else if (canvas == 'random') {
+						return origGetLineDash.apply(fakecanvas.getContext('2d'), [Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1]);
+					}
+				}
+				var canvas_c = scope.WebGLRenderingContext;
+				var origReadPixels = canvas_c.prototype.readPixels;
+				canvas_c.prototype.readPixels = function() {
+					fakecanvas.title = 'readPixels';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origReadPixels.apply(fakecanvas.getContext('webgl'), arguments);
+					} else if (canvas == 'random') {
+						return origReadPixels.apply(fakecanvas.getContext('webgl'), [Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1, Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1, arguments[4], arguments[5], arguments[6]]);
+					}
+				}
+			}
+			/* Audio Block */
+			if (audioblock == 'true') {
+				var audioblock_triggerblock = scope.document.createElement('div');
+				audioblock_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_audio';
+				var audioblock_a = scope.AudioBuffer;
+				audioblock_a.prototype.copyFromChannel = function() {
+					audioblock_triggerblock.title = 'copyFromChannel';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_a.prototype.getChannelData = function() {
+					audioblock_triggerblock.title = 'getChannelData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				var audioblock_b = scope.AnalyserNode;
+				audioblock_b.prototype.getFloatFrequencyData = function() {
+					audioblock_triggerblock.title = 'getFloatFrequencyData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_b.prototype.getByteFrequencyData = function() {
+					audioblock_triggerblock.title = 'getByteFrequencyData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_b.prototype.getFloatTimeDomainData = function() {
+					audioblock_triggerblock.title = 'getFloatTimeDomainData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_b.prototype.getByteTimeDomainData = function() {
+					audioblock_triggerblock.title = 'getByteTimeDomainData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				var audioblock_c = scope;
+				audioblock_c.AudioContext = function() {
+					audioblock_triggerblock.title = 'AudioContext';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_c.webkitAudioContext = function() {
+					audioblock_triggerblock.title = 'webkitAudioContext';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+			}
+			/* Canvas Font */
+			if (canvasfont == 'true') {
+				var canvasfont_triggerblock = scope.document.createElement('div');
+				canvasfont_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_canvasfont';
+				var canvasfont_a = scope.CanvasRenderingContext2D;
+				canvasfont_a.prototype.measureText = function() {
+					canvasfont_triggerblock.title = 'measureText';
+					document.documentElement.appendChild(canvasfont_triggerblock);
+					return false;
+				}
+			}
+			/* Battery */
+			if (battery == 'true') {
+				var battery_triggerblock = scope.document.createElement('div');
+				battery_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_battery';
+				var battery_a = scope.navigator;
+				battery_a.getBattery = function() {
+					battery_triggerblock.title = 'getBattery';
+					document.documentElement.appendChild(battery_triggerblock);
+					return void(0);
+				}
+			}
+			/* WebGL */
+			if (webgl == 'true') {
+				var webgl_triggerblock = scope.document.createElement('div');
+				webgl_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_webgl';
+				var webgl_a = scope.WebGLRenderingContext;
+				webgl_a.getSupportedExtensions = function() {
+					webgl_triggerblock.title = 'getSupportedExtensions';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+				webgl_a.getParameter = function() {
+					webgl_triggerblock.title = 'getParameter';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+				webgl_a.getContextAttributes = function() {
+					webgl_triggerblock.title = 'getContextAttributes';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+				webgl_a.getShaderPrecisionFormat = function() {
+					webgl_triggerblock.title = 'getShaderPrecisionFormat';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+				webgl_a.getExtension = function() {
+					webgl_triggerblock.title = 'getExtension';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+			}
+			/* WebRTC */
+			if (webrtcdevice == 'true') {
+				var webrtc_triggerblock = scope.document.createElement('div');
+				webrtc_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_webrtc';
+				var webrtc_a = scope.MediaStreamTrack;
+				webrtc_a.getSources = function() {
+					webrtc_triggerblock.title = 'getSources';
+					document.documentElement.appendChild(webrtc_triggerblock);
+					return false;
+				}
+				webrtc_a.getMediaDevices = function() {
+					webrtc_triggerblock.title = 'getMediaDevices';
+					document.documentElement.appendChild(webrtc_triggerblock);
+					return false;
+				}
+				var webrtc_b = scope.navigator.mediaDevices;
+				webrtc_b.enumerateDevices = function() {
+					webrtc_triggerblock.title = 'enumerateDevices';
+					document.documentElement.appendChild(webrtc_triggerblock);
+					return false;
+				}
+			}
+			/* Gamepad */
+			if (gamepad == 'true') {
+				var gamepad_triggerblock = scope.document.createElement('div');
+				gamepad_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_gamepad';
+				var gamepad_a = scope.navigator;
+				gamepad_a.getGamepads = function() {
+					gamepad_triggerblock.title = 'getGamepads';
+					document.documentElement.appendChild(gamepad_triggerblock);
+					return false;
+				}
+			}
+			/* WebVR */
+			if (webvr == 'true') {
+				var webvr_triggerblock = scope.document.createElement('div');
+				webvr_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_webvr';
+				var webvr_a = scope.navigator;
+				webvr_a.getVRDisplays = function() {
+					webvr_triggerblock.title = 'getVRDisplays';
+					document.documentElement.appendChild(webvr_triggerblock);
+					return false;
+				}
+			}
+			/* Client Rectangles */
+			if (clientrects == 'true') {
+				var clientrects_triggerblock = scope.document.createElement('div');
+				clientrects_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_clientrects';
+				Element.prototype.getClientRects = function() {
+					clientrects_triggerblock.title = 'getClientRects';
+					document.documentElement.appendChild(clientrects_triggerblock);
+					return [{'top': 0, 'bottom': 0, 'left': 0, 'right': 0, 'height': 0, 'width': 0}];
+				}
+			}
+			/* Timezone */
+			if (timezone != 'false') {
+				var timezone_triggerblock = scope.document.createElement('div');
+				timezone_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_timezone';
+				var timezone_a = scope.Date;
+				timezone_a.prototype.getTimezoneOffset = function() {
+					timezone_triggerblock.title = 'getTimezoneOffset';
+					document.documentElement.appendChild(timezone_triggerblock);
+					if (timezone == 'random') return ['720','660','600','570','540','480','420','360','300','240','210','180','120','60','0','-60','-120','-180','-210','-240','-270','-300','-330','-345','-360','-390','-420','-480','-510','-525','-540','-570','-600','-630','-660','-720','-765','-780','-840'][Math.floor(Math.random() * 39)];
+					return timezone;
+				}
+			}
+			/* Clipboard */
+			if (clipboard == 'true') {
+				var clipboard_triggerblock = scope.document.createElement('div');
+				clipboard_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_clipboard';
+				var clipboard_a = document;
+				var origExecCommand = clipboard_a.execCommand;
+				clipboard_a.execCommand = function() {
+					clipboard_triggerblock.title = 'execCommand';
+					document.documentElement.appendChild(clipboard_triggerblock);
+					if (arguments[0] == 'cut' || arguments[0] == 'copy') return false;
+					return origExecCommand.apply(this, arguments);
+				};
+			}
+		}
+		processFunctions(window);
+		var iwin = HTMLIFrameElement.prototype.__lookupGetter__('contentWindow'), idoc = HTMLIFrameElement.prototype.__lookupGetter__('contentDocument');
+		Object.defineProperties(HTMLIFrameElement.prototype, {
+			contentWindow: {
+				get: function() {
+					var frame = iwin.apply(this);
+					if (this.src && this.src.indexOf('//') != -1 && location.host != this.src.split('/')[2]) return frame;
+					try { frame.HTMLCanvasElement } catch (err) { /* do nothing*/ }
+					processFunctions(frame);
+					return frame;
+				}
+			},
+			contentDocument: {
+				get: function() {
+					if (this.src && this.src.indexOf('//') != -1 && location.host != this.src.split('/')[2]) return idoc.apply(this);
+					var frame = iwin.apply(this);
+					try { frame.HTMLCanvasElement } catch (err) { /* do nothing*/ }
+					processFunctions(frame);
+					return idoc.apply(this);
+				}
+			}
+		});
+	})('false','false','true','true','false','true','true','false','random','false','false');</script>
+<body>
+<div id="I_top">
+<div id="I_header">
+<div id="I_logo"><a href="http://www.cplusplus.com/" title="cplusplus.com" data-ss1502523234="1"><div></div></a></div>
+<div id="I_search">
+<form id="search" action="http://www.cplusplus.com/search.do" method="get">
+Search: <input name="q" size="20" class="txt"> <input type="submit" value="Go" class="btn">
+</form>
+</div>
+<div id="I_bar">
+<ul>
+<li><a href="http://www.cplusplus.com/reference/" data-ss1502523234="1">Reference</a></li>
+<li><a href="http://www.cplusplus.com/reference/cctype/" data-ss1502523234="1">&lt;cctype&gt; </a></li>
+<li class="here">isdigit</li>
+</ul>
+</div>
+<div id="I_user" class="C_LoginBox"><span title="ajax"></span></div>
+</div>
+</div>
+<div id="I_mid">
+<div id="I_wrap">
+<div id="I_minheight"></div>
+<div id="I_main">
+<div class="C_support">
+<div id="div-gpt-ad-1473193443042-0" style="height:90px; width:728px;" ho0rfx4="" hidden="">
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1473193443042-0'); });
+</script>
+</div>
+</div>
+<div id="I_content">
+<div class="C_doc">
+<div id="I_type">function
+</div>
+<div id="I_file">&lt;cctype&gt;</div>
+<h1>isdigit</h1>
+<div class="C_prototype"><pre>int isdigit ( int c );</pre></div><div id="I_description">Check if character is decimal digit</div>
+<section id="description">
+Checks whether <i>c</i> is a decimal digit character.<br>
+<br>
+Decimal digits are any of: <tt>0 1 2 3 4 5 6 7 8 9</tt> <br>
+<br>
+For a detailed chart on what the different <tt>ctype</tt> functions return for each character of the standard ASCII character set, see the reference for the &lt;<a href="http://www.cplusplus.com/cctype" data-ss1502523234="1">cctype</a>&gt; header.<br>
+<br>
+In C++, a locale-specific template version of this function (<a href="http://www.cplusplus.com/locale:isdigit" data-ss1502523234="1">isdigit</a>) exists in header <a href="http://www.cplusplus.com/%3Clocale%3E" data-ss1502523234="1">&lt;locale&gt;</a>.<br>
+</section>
+<br>
+<section id="parameters">
+<h3>Parameters</h3>
+<dl>
+<dt>c</dt>
+<dd>Character to be checked, casted to an <tt>int</tt>, or <tt>EOF</tt>.</dd>
+</dl>
+</section>
+<br>
+<section id="return">
+<h3>Return Value</h3>
+A value different from zero (i.e., <tt>true</tt>) if indeed <i>c</i> is a decimal digit. Zero (i.e., <tt>false</tt>) otherwise.<br>
+</section>
+<br>
+<section id="example">
+<h3>Example</h3>
+<div class="auto"><table class="snippet"><tbody><tr><td class="rownum"><pre><code>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br></code></pre></td>
+<td class="source"><pre><code><cite>/* isdigit example */</cite>
+<dfn>#include &lt;stdio.h&gt;</dfn>
+<dfn>#include &lt;stdlib.h&gt;</dfn>
+<dfn>#include &lt;ctype.h&gt;</dfn>
+<var>int</var> main ()
+{
+  <var>char</var> str[]=<kbd>"1776ad"</kbd>;
+  <var>int</var> year;
+  <var>if</var> (isdigit(str[0]))
+  {
+    year = atoi (str);
+    printf (<kbd>"The year that followed %d was %d.\n"</kbd>,year,year+1);
+  }
+  <var>return</var> 0;
+}</code></pre></td><td class="C_btnholder"></td></tr></tbody></table></div>
+<br>
+<br>
+Output<br>
+<div class="auto"><table class="snippet"><tbody><tr><td class="output"><pre><samp>
+The year that followed 1776 was 1777
+</samp></pre></td></tr></tbody></table></div>
+<br>
+<tt>isdigit</tt> is used to check if the first character in <tt>str</tt> is a digit and therefore a valid candidate to be converted by <a href="http://www.cplusplus.com/atoi" data-ss1502523234="1">atoi</a> into an integer value.<br>
+</section>
+<br>
+<section id="see">
+<h3>See also</h3>
+<dl class="links"><dt><a href="http://www.cplusplus.com/reference/cctype/isalnum/" data-ss1502523234="1"><b>isalnum</b></a></dt><dd>Check if character is alphanumeric <span class="typ">(function
+)</span></dd></dl><dl class="links"><dt><a href="http://www.cplusplus.com/reference/cctype/isalpha/" data-ss1502523234="1"><b>isalpha</b></a></dt><dd>Check if character is alphabetic <span class="typ">(function
+)</span></dd></dl>
+</section></div><div id="CH_bb"></div></div>
+</div>
+<div id="I_nav">
+<div class="sect root">
+<h3><b><a href="http://www.cplusplus.com/" data-ss1502523234="1">C++</a></b></h3>
+<ul>
+<li class="folder info"><a href="http://www.cplusplus.com/info/" data-ss1502523234="1">Information</a></li>
+<li class="folder doc"><a href="http://www.cplusplus.com/doc/" data-ss1502523234="1">Tutorials</a></li>
+<li class="folder selected reference"><a href="http://www.cplusplus.com/reference/" data-ss1502523234="1">Reference</a></li>
+<li class="folder articles"><a href="http://www.cplusplus.com/articles/" data-ss1502523234="1">Articles</a></li>
+<li class="folder forum"><a href="http://www.cplusplus.com/forum/" data-ss1502523234="1">Forum</a></li>
+</ul>
+</div>
+<div class="C_BoxLabels C_BoxSort sect" id="reference_box">
+<h3><b><a href="http://www.cplusplus.com/reference/" data-ss1502523234="1">Reference</a></b></h3>
+<ul>
+<li class="C_Collapsable"><h4><a href="http://www.cplusplus.com/reference/clibrary/" data-ss1502523234="1">C library:</a></h4><ul>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/cassert/" data-ss1502523234="1"><span>&lt;cassert&gt; (assert.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 selected folder"><a href="http://www.cplusplus.com/reference/cctype/" data-ss1502523234="1"><span>&lt;cctype&gt; (ctype.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/cerrno/" data-ss1502523234="1"><span>&lt;cerrno&gt; (errno.h)</span></a></li>
+<li class="c99 cpp11 folder"><a href="http://www.cplusplus.com/reference/cfenv/" data-ss1502523234="1"><span>&lt;cfenv&gt; (fenv.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/cfloat/" data-ss1502523234="1"><span>&lt;cfloat&gt; (float.h)</span></a></li>
+<li class="c99 cpp11 folder"><a href="http://www.cplusplus.com/reference/cinttypes/" data-ss1502523234="1"><span>&lt;cinttypes&gt; (inttypes.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/ciso646/" data-ss1502523234="1"><span>&lt;ciso646&gt; (iso646.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/climits/" data-ss1502523234="1"><span>&lt;climits&gt; (limits.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/clocale/" data-ss1502523234="1"><span>&lt;clocale&gt; (locale.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/cmath/" data-ss1502523234="1"><span>&lt;cmath&gt; (math.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/csetjmp/" data-ss1502523234="1"><span>&lt;csetjmp&gt; (setjmp.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/csignal/" data-ss1502523234="1"><span>&lt;csignal&gt; (signal.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/cstdarg/" data-ss1502523234="1"><span>&lt;cstdarg&gt; (stdarg.h)</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/cstdbool/" data-ss1502523234="1"><span>&lt;cstdbool&gt; (stdbool.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/cstddef/" data-ss1502523234="1"><span>&lt;cstddef&gt; (stddef.h)</span></a></li>
+<li class="c99 cpp11 folder"><a href="http://www.cplusplus.com/reference/cstdint/" data-ss1502523234="1"><span>&lt;cstdint&gt; (stdint.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/cstdio/" data-ss1502523234="1"><span>&lt;cstdio&gt; (stdio.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/cstdlib/" data-ss1502523234="1"><span>&lt;cstdlib&gt; (stdlib.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/cstring/" data-ss1502523234="1"><span>&lt;cstring&gt; (string.h)</span></a></li>
+<li class="c99 cpp11 folder"><a href="http://www.cplusplus.com/reference/ctgmath/" data-ss1502523234="1"><span>&lt;ctgmath&gt; (tgmath.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/ctime/" data-ss1502523234="1"><span>&lt;ctime&gt; (time.h)</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/cuchar/" data-ss1502523234="1"><span>&lt;cuchar&gt; (uchar.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/cwchar/" data-ss1502523234="1"><span>&lt;cwchar&gt; (wchar.h)</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/cwctype/" data-ss1502523234="1"><span>&lt;cwctype&gt; (wctype.h)</span></a></li>
+</ul></li>
+<li class="C_Collapsable collapsed"><h4><a href="http://www.cplusplus.com/reference/stl/" data-ss1502523234="1">Containers:</a></h4><ul>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/array/" data-ss1502523234="1"><span>&lt;array&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/deque/" data-ss1502523234="1"><span>&lt;deque&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/forward_list/" data-ss1502523234="1"><span>&lt;forward_list&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/list/" data-ss1502523234="1"><span>&lt;list&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/map/" data-ss1502523234="1"><span>&lt;map&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/queue/" data-ss1502523234="1"><span>&lt;queue&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/set/" data-ss1502523234="1"><span>&lt;set&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/stack/" data-ss1502523234="1"><span>&lt;stack&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/unordered_map/" data-ss1502523234="1"><span>&lt;unordered_map&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/unordered_set/" data-ss1502523234="1"><span>&lt;unordered_set&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/vector/" data-ss1502523234="1"><span>&lt;vector&gt;</span></a></li>
+</ul></li>
+<li class="C_Collapsable collapsed"><h4><a href="http://www.cplusplus.com/reference/iolibrary/" data-ss1502523234="1">Input/Output:</a></h4><ul>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/fstream/" data-ss1502523234="1"><span>&lt;fstream&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/iomanip/" data-ss1502523234="1"><span>&lt;iomanip&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/ios/" data-ss1502523234="1"><span>&lt;ios&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/iosfwd/" data-ss1502523234="1"><span>&lt;iosfwd&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/iostream/" data-ss1502523234="1"><span>&lt;iostream&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/istream/" data-ss1502523234="1"><span>&lt;istream&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/ostream/" data-ss1502523234="1"><span>&lt;ostream&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/sstream/" data-ss1502523234="1"><span>&lt;sstream&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/streambuf/" data-ss1502523234="1"><span>&lt;streambuf&gt;</span></a></li>
+</ul></li>
+<li class="C_Collapsable collapsed"><h4><a href="http://www.cplusplus.com/reference/multithreading/" data-ss1502523234="1">Multi-threading:</a></h4><ul>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/atomic/" data-ss1502523234="1"><span>&lt;atomic&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/condition_variable/" data-ss1502523234="1"><span>&lt;condition_variable&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/future/" data-ss1502523234="1"><span>&lt;future&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/mutex/" data-ss1502523234="1"><span>&lt;mutex&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/thread/" data-ss1502523234="1"><span>&lt;thread&gt;</span></a></li>
+</ul></li>
+<li class="C_Collapsable collapsed"><h4><a href="http://www.cplusplus.com/reference/std/" data-ss1502523234="1">Other:</a></h4><ul>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/algorithm/" data-ss1502523234="1"><span>&lt;algorithm&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/bitset/" data-ss1502523234="1"><span>&lt;bitset&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/chrono/" data-ss1502523234="1"><span>&lt;chrono&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/codecvt/" data-ss1502523234="1"><span>&lt;codecvt&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/complex/" data-ss1502523234="1"><span>&lt;complex&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/exception/" data-ss1502523234="1"><span>&lt;exception&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/functional/" data-ss1502523234="1"><span>&lt;functional&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/initializer_list/" data-ss1502523234="1"><span>&lt;initializer_list&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/iterator/" data-ss1502523234="1"><span>&lt;iterator&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/limits/" data-ss1502523234="1"><span>&lt;limits&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/locale/" data-ss1502523234="1"><span>&lt;locale&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/memory/" data-ss1502523234="1"><span>&lt;memory&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/new/" data-ss1502523234="1"><span>&lt;new&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/numeric/" data-ss1502523234="1"><span>&lt;numeric&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/random/" data-ss1502523234="1"><span>&lt;random&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/ratio/" data-ss1502523234="1"><span>&lt;ratio&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/regex/" data-ss1502523234="1"><span>&lt;regex&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/stdexcept/" data-ss1502523234="1"><span>&lt;stdexcept&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/string/" data-ss1502523234="1"><span>&lt;string&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/system_error/" data-ss1502523234="1"><span>&lt;system_error&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/tuple/" data-ss1502523234="1"><span>&lt;tuple&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/typeindex/" data-ss1502523234="1"><span>&lt;typeindex&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/typeinfo/" data-ss1502523234="1"><span>&lt;typeinfo&gt;</span></a></li>
+<li class="cpp11 folder"><a href="http://www.cplusplus.com/reference/type_traits/" data-ss1502523234="1"><span>&lt;type_traits&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/utility/" data-ss1502523234="1"><span>&lt;utility&gt;</span></a></li>
+<li class="cpp98 cpp11 folder"><a href="http://www.cplusplus.com/reference/valarray/" data-ss1502523234="1"><span>&lt;valarray&gt;</span></a></li>
+</ul></li>
+</ul>
+</div>
+<div class="C_BoxLabels C_BoxSort sect c90 c99 arm cpp98 cpp11" id="cctype_box">
+<h3><b><a href="http://www.cplusplus.com/reference/cctype/" data-ss1502523234="1">&lt;cctype&gt; (ctype.h)</a></b></h3>
+<ul>
+<li class="c90 c99 arm cpp98 cpp11"><a href="http://www.cplusplus.com/reference/cctype/isalnum/" data-ss1502523234="1"><span>isalnum</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11"><a href="http://www.cplusplus.com/reference/cctype/isalpha/" data-ss1502523234="1"><span>isalpha</span></a></li>
+<li class="c99 cpp11"><a href="http://www.cplusplus.com/reference/cctype/isblank/" data-ss1502523234="1"><span>isblank</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11"><a href="http://www.cplusplus.com/reference/cctype/iscntrl/" data-ss1502523234="1"><span>iscntrl</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11 selected"><a href="http://www.cplusplus.com/reference/cctype/isdigit/" data-ss1502523234="1"><span>isdigit</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11"><a href="http://www.cplusplus.com/reference/cctype/isgraph/" data-ss1502523234="1"><span>isgraph</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11"><a href="http://www.cplusplus.com/reference/cctype/islower/" data-ss1502523234="1"><span>islower</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11"><a href="http://www.cplusplus.com/reference/cctype/isprint/" data-ss1502523234="1"><span>isprint</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11"><a href="http://www.cplusplus.com/reference/cctype/ispunct/" data-ss1502523234="1"><span>ispunct</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11"><a href="http://www.cplusplus.com/reference/cctype/isspace/" data-ss1502523234="1"><span>isspace</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11"><a href="http://www.cplusplus.com/reference/cctype/isupper/" data-ss1502523234="1"><span>isupper</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11"><a href="http://www.cplusplus.com/reference/cctype/isxdigit/" data-ss1502523234="1"><span>isxdigit</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11"><a href="http://www.cplusplus.com/reference/cctype/tolower/" data-ss1502523234="1"><span>tolower</span></a></li>
+<li class="c90 c99 arm cpp98 cpp11"><a href="http://www.cplusplus.com/reference/cctype/toupper/" data-ss1502523234="1"><span>toupper</span></a></li>
+</ul>
+</div>
+<div id="I_subnav"></div>
+<div class="C_ad234">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-7688470879129516";
+google_ad_slot = "7445514729";
+google_ad_width = 234;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div></div>
+<div id="I_midclear"></div>
+</div>
+</div>
+<div id="I_bottom">
+<div id="I_footer">
+	<a href="http://www.cplusplus.com/" data-ss1502523234="1">Home page</a> | <a href="http://www.cplusplus.com/privacy.do" data-ss1502523234="1">Privacy policy</a><br>© cplusplus.com, 2000-2017 - All rights reserved - <i>v3.1</i><br><a href="http://www.cplusplus.com/contact.do?referrer=www.cplusplus.com%2Freference%2Fcctype%2Fisdigit%2F" data-ss1502523234="1">Spotted an error? contact us</a>
+</div>
+</div>
+
+<script type="text/javascript">
+<!--
+ onSession ( function(us) {
+		el=document.getElementById('CH_bb'); el.innerHTML='';
+		if (us.auth(4096)) {
+			
+			el.appendChild(btn('Edit Page','Edit Page','edit','/reference/edit.cgi?a=cctype+isdigit'));
+			el.appendChild(btn('Delete Page','Delete Page','delete','javascript:docdel()'));
+		}
+	});
+	function docdel() { if (confirm('WARNING: You are about to delete this page. Confirm?')) window.location='/reference/delete.cgi?a=cctype+isdigit'; }
+	ready();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-521783-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+//-->
+</script>
+
+<script>
+(function(){
+  // mini cookie-consent code (c) Juan Soulie, 2016
+  var s ='consent=cookie';
+  var e = document.createElement('div');
+  e.innerHTML = '<div style="background:#eed;padding:10px;margin:0;text-align:center;border-bottom:1px solid #446"><span style="color:#210;font-weight:bold">This website uses cookies. By continuing, you give permission to deploy cookies, as detailed in our <a href="/privacy.do">privacy policy</a>.</span> <span style="margin-left:10px;border-radius:5px;padding:1px 10px;background:#bcd;border:1px solid #789;cursor:pointer">ok</span></div>';
+  if (document.cookie.indexOf(s)!==-1) return;
+  var b = document.getElementsByTagName('body')[0];
+  b.insertBefore(e,b.firstChild);
+  var x = function() { document.cookie = s+'; path=/'; e.parentNode.removeChild(e); };
+  e.addEventListener('click',x);
+  document.addEventListener('scroll',x);
+})();
+</script>
+
+
+</body></html>

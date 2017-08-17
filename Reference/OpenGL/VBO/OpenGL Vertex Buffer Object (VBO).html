@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://www.songho.ca/opengl/gl_vbo.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>OpenGL Vertex Buffer Object (VBO)</title>
+
+
+<meta name="description" content="OpenGL Vertex buffer object (VBO) to store vertex array data with high-performance transfer rate such as positions, normals, tex coords, etc.">
+<meta name="keywords" content="OpenGL, Vertex Buffer Object, PBO, vertex array">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Song Ho Ahn">
+<meta name="generator" content="editplus">
+<meta name="robots" content="index,follow">
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" media="screen" href="./OpenGL Vertex Buffer Object (VBO)_files/screen.css">
+<link rel="stylesheet" type="text/css" media="print" href="./OpenGL Vertex Buffer Object (VBO)_files/print.css">
+
+<!-- Javascript -->
+<script type="text/javascript" src="./OpenGL Vertex Buffer Object (VBO)_files/songho.js.download"></script>
+
+</head><script type="text/javascript">(function (canvas, canvasfont, audioblock, battery, webgl, webrtcdevice, gamepad, webvr, timezone, clientrects, clipboard){
+		function processFunctions(scope) {
+			/* Canvas */
+			if (canvas != 'false') {
+				var fakecanvas = scope.document.createElement('canvas');
+				fakecanvas.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_canvas';
+				if (canvas == 'random') {
+					var fakewidth = fakecanvas.width = Math.floor(Math.random() * 999) + 1;
+					var fakeheight = fakecanvas.height = Math.floor(Math.random() * 999) + 1;
+				}
+				var canvas_a = scope.HTMLCanvasElement;
+				var origToDataURL = canvas_a.prototype.toDataURL;
+				var origToBlob = canvas_a.prototype.toBlob;
+				canvas_a.prototype.toDataURL = function() {
+					fakecanvas.title = 'toDataURL';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origToDataURL.apply(fakecanvas, arguments);
+					} else if (canvas == 'random') {
+						return origToDataURL.apply(fakecanvas, arguments);
+					}
+				};
+				canvas_a.prototype.toBlob = function() {
+					fakecanvas.title = 'toBlob';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origToBlob.apply(fakecanvas, arguments);
+					} else if (canvas == 'random') {
+						return origToBlob.apply(fakecanvas, arguments);
+					}
+				};
+				var canvas_b = scope.CanvasRenderingContext2D;
+				var origGetImageData = canvas_b.prototype.getImageData;
+				canvas_b.prototype.getImageData = function() {
+					fakecanvas.title = 'getImageData';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origGetImageData.apply(fakecanvas.getContext('2d'), arguments);
+					} else if (canvas == 'random') {
+						return origGetImageData.apply(fakecanvas.getContext('2d'), [Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1, Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1]);
+					}
+				}
+				var origGetLineDash = canvas_b.prototype.getLineDash;
+				canvas_b.prototype.getLineDash = function() {
+					fakecanvas.title = 'getLineDash';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origGetLineDash.apply(fakecanvas.getContext('2d'), [0, 0]);
+					} else if (canvas == 'random') {
+						return origGetLineDash.apply(fakecanvas.getContext('2d'), [Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1]);
+					}
+				}
+				var canvas_c = scope.WebGLRenderingContext;
+				var origReadPixels = canvas_c.prototype.readPixels;
+				canvas_c.prototype.readPixels = function() {
+					fakecanvas.title = 'readPixels';
+					document.documentElement.appendChild(fakecanvas);
+					if (canvas == 'block') return false;
+					else if (canvas == 'blank') {
+						fakecanvas.width = this.width;
+						fakecanvas.height = this.height;
+						return origReadPixels.apply(fakecanvas.getContext('webgl'), arguments);
+					} else if (canvas == 'random') {
+						return origReadPixels.apply(fakecanvas.getContext('webgl'), [Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1, Math.floor(Math.random() * fakewidth) + 1, Math.floor(Math.random() * fakeheight) + 1, arguments[4], arguments[5], arguments[6]]);
+					}
+				}
+			}
+			/* Audio Block */
+			if (audioblock == 'true') {
+				var audioblock_triggerblock = scope.document.createElement('div');
+				audioblock_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_audio';
+				var audioblock_a = scope.AudioBuffer;
+				audioblock_a.prototype.copyFromChannel = function() {
+					audioblock_triggerblock.title = 'copyFromChannel';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_a.prototype.getChannelData = function() {
+					audioblock_triggerblock.title = 'getChannelData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				var audioblock_b = scope.AnalyserNode;
+				audioblock_b.prototype.getFloatFrequencyData = function() {
+					audioblock_triggerblock.title = 'getFloatFrequencyData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_b.prototype.getByteFrequencyData = function() {
+					audioblock_triggerblock.title = 'getByteFrequencyData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_b.prototype.getFloatTimeDomainData = function() {
+					audioblock_triggerblock.title = 'getFloatTimeDomainData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_b.prototype.getByteTimeDomainData = function() {
+					audioblock_triggerblock.title = 'getByteTimeDomainData';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				var audioblock_c = scope;
+				audioblock_c.AudioContext = function() {
+					audioblock_triggerblock.title = 'AudioContext';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+				audioblock_c.webkitAudioContext = function() {
+					audioblock_triggerblock.title = 'webkitAudioContext';
+					document.documentElement.appendChild(audioblock_triggerblock);
+					return false;
+				}
+			}
+			/* Canvas Font */
+			if (canvasfont == 'true') {
+				var canvasfont_triggerblock = scope.document.createElement('div');
+				canvasfont_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_canvasfont';
+				var canvasfont_a = scope.CanvasRenderingContext2D;
+				canvasfont_a.prototype.measureText = function() {
+					canvasfont_triggerblock.title = 'measureText';
+					document.documentElement.appendChild(canvasfont_triggerblock);
+					return false;
+				}
+			}
+			/* Battery */
+			if (battery == 'true') {
+				var battery_triggerblock = scope.document.createElement('div');
+				battery_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_battery';
+				var battery_a = scope.navigator;
+				battery_a.getBattery = function() {
+					battery_triggerblock.title = 'getBattery';
+					document.documentElement.appendChild(battery_triggerblock);
+					return void(0);
+				}
+			}
+			/* WebGL */
+			if (webgl == 'true') {
+				var webgl_triggerblock = scope.document.createElement('div');
+				webgl_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_webgl';
+				var webgl_a = scope.WebGLRenderingContext;
+				webgl_a.getSupportedExtensions = function() {
+					webgl_triggerblock.title = 'getSupportedExtensions';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+				webgl_a.getParameter = function() {
+					webgl_triggerblock.title = 'getParameter';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+				webgl_a.getContextAttributes = function() {
+					webgl_triggerblock.title = 'getContextAttributes';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+				webgl_a.getShaderPrecisionFormat = function() {
+					webgl_triggerblock.title = 'getShaderPrecisionFormat';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+				webgl_a.getExtension = function() {
+					webgl_triggerblock.title = 'getExtension';
+					document.documentElement.appendChild(webgl_triggerblock);
+					return false;
+				}
+			}
+			/* WebRTC */
+			if (webrtcdevice == 'true') {
+				var webrtc_triggerblock = scope.document.createElement('div');
+				webrtc_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_webrtc';
+				var webrtc_a = scope.MediaStreamTrack;
+				webrtc_a.getSources = function() {
+					webrtc_triggerblock.title = 'getSources';
+					document.documentElement.appendChild(webrtc_triggerblock);
+					return false;
+				}
+				webrtc_a.getMediaDevices = function() {
+					webrtc_triggerblock.title = 'getMediaDevices';
+					document.documentElement.appendChild(webrtc_triggerblock);
+					return false;
+				}
+				var webrtc_b = scope.navigator.mediaDevices;
+				webrtc_b.enumerateDevices = function() {
+					webrtc_triggerblock.title = 'enumerateDevices';
+					document.documentElement.appendChild(webrtc_triggerblock);
+					return false;
+				}
+			}
+			/* Gamepad */
+			if (gamepad == 'true') {
+				var gamepad_triggerblock = scope.document.createElement('div');
+				gamepad_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_gamepad';
+				var gamepad_a = scope.navigator;
+				gamepad_a.getGamepads = function() {
+					gamepad_triggerblock.title = 'getGamepads';
+					document.documentElement.appendChild(gamepad_triggerblock);
+					return false;
+				}
+			}
+			/* WebVR */
+			if (webvr == 'true') {
+				var webvr_triggerblock = scope.document.createElement('div');
+				webvr_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_webvr';
+				var webvr_a = scope.navigator;
+				webvr_a.getVRDisplays = function() {
+					webvr_triggerblock.title = 'getVRDisplays';
+					document.documentElement.appendChild(webvr_triggerblock);
+					return false;
+				}
+			}
+			/* Client Rectangles */
+			if (clientrects == 'true') {
+				var clientrects_triggerblock = scope.document.createElement('div');
+				clientrects_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_clientrects';
+				Element.prototype.getClientRects = function() {
+					clientrects_triggerblock.title = 'getClientRects';
+					document.documentElement.appendChild(clientrects_triggerblock);
+					return [{'top': 0, 'bottom': 0, 'left': 0, 'right': 0, 'height': 0, 'width': 0}];
+				}
+			}
+			/* Timezone */
+			if (timezone != 'false') {
+				var timezone_triggerblock = scope.document.createElement('div');
+				timezone_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_timezone';
+				var timezone_a = scope.Date;
+				timezone_a.prototype.getTimezoneOffset = function() {
+					timezone_triggerblock.title = 'getTimezoneOffset';
+					document.documentElement.appendChild(timezone_triggerblock);
+					if (timezone == 'random') return ['720','660','600','570','540','480','420','360','300','240','210','180','120','60','0','-60','-120','-180','-210','-240','-270','-300','-330','-345','-360','-390','-420','-480','-510','-525','-540','-570','-600','-630','-660','-720','-765','-780','-840'][Math.floor(Math.random() * 39)];
+					return timezone;
+				}
+			}
+			/* Clipboard */
+			if (clipboard == 'true') {
+				var clipboard_triggerblock = scope.document.createElement('div');
+				clipboard_triggerblock.className = 'scriptsafe_oiigbmnaadbkfbmpbfijlflahbdbdgdf_clipboard';
+				var clipboard_a = document;
+				var origExecCommand = clipboard_a.execCommand;
+				clipboard_a.execCommand = function() {
+					clipboard_triggerblock.title = 'execCommand';
+					document.documentElement.appendChild(clipboard_triggerblock);
+					if (arguments[0] == 'cut' || arguments[0] == 'copy') return false;
+					return origExecCommand.apply(this, arguments);
+				};
+			}
+		}
+		processFunctions(window);
+		var iwin = HTMLIFrameElement.prototype.__lookupGetter__('contentWindow'), idoc = HTMLIFrameElement.prototype.__lookupGetter__('contentDocument');
+		Object.defineProperties(HTMLIFrameElement.prototype, {
+			contentWindow: {
+				get: function() {
+					var frame = iwin.apply(this);
+					if (this.src && this.src.indexOf('//') != -1 && location.host != this.src.split('/')[2]) return frame;
+					try { frame.HTMLCanvasElement } catch (err) { /* do nothing*/ }
+					processFunctions(frame);
+					return frame;
+				}
+			},
+			contentDocument: {
+				get: function() {
+					if (this.src && this.src.indexOf('//') != -1 && location.host != this.src.split('/')[2]) return idoc.apply(this);
+					var frame = iwin.apply(this);
+					try { frame.HTMLCanvasElement } catch (err) { /* do nothing*/ }
+					processFunctions(frame);
+					return idoc.apply(this);
+				}
+			}
+		});
+	})('false','false','true','true','false','true','true','false','random','false','false');</script>
+
+
+<body>
+<div id="wrap">
+
+<div id="leftblock">
+<div class="innerblock">
+
+
+<!-- nav -->
+<div style="clear:both; font-size:80%">
+<a href="http://www.songho.ca/opengl/index.html" data-ss1502388427="1">←Back</a>
+</div>
+
+
+<h1>OpenGL Vertex Buffer Object (VBO)</h1>
+
+<p>
+<b>Related Topics:</b> <a href="http://www.songho.ca/opengl/gl_vertexarray.html" data-ss1502388427="1">Vertex Array</a>, <a href="http://www.songho.ca/opengl/gl_displaylist.html" data-ss1502388427="1">Display List</a>, <a href="http://www.songho.ca/opengl/gl_pbo.html" data-ss1502388427="1">Pixel Buffer Object</a>
+<br>
+<b>Download:</b> <a href="http://www.songho.ca/opengl/files/vbo.zip" data-ss1502388427="1">vbo.zip</a>, <a href="http://www.songho.ca/opengl/files/vboSimple.zip" data-ss1502388427="1">vboSimple.zip</a>
+</p>
+
+<ul>
+	<li><a href="http://www.songho.ca/opengl/gl_vbo.html#create" data-ss1502388427="1">Creating VBO</a></li>
+	<li><a href="http://www.songho.ca/opengl/gl_vbo.html#draw" data-ss1502388427="1">Drawing VBO</a></li>
+	<li><a href="http://www.songho.ca/opengl/gl_vbo.html#update" data-ss1502388427="1">Updating VBO</a></li>
+	<li><a href="http://www.songho.ca/opengl/gl_vbo.html#example" data-ss1502388427="1">Example</a></li>
+</ul>
+<p>
+<b>GL_ARB_vertex_buffer_object</b> extension is intended to enhance the performance of OpenGL by providing the benefits of <a href="http://www.songho.ca/opengl/gl_vertexarray.html" data-ss1502388427="1">vertex array</a> and <a href="http://www.songho.ca/opengl/gl_displaylist.html" data-ss1502388427="1">display list</a>, while avoiding downsides of their implementations. Vertex buffer object (VBO) allows vertex array data to be stored in high-performance graphics memory on the server side and promotes efficient data transfer. If the buffer object is used to store pixel data, it is called <a href="http://www.songho.ca/opengl/gl_pbo.html" data-ss1502388427="1">Pixel Buffer Object (PBO)</a>.
+</p>
+<p>
+Using vertex array can reduce the number of function calls and redundant usage of the shared vertices. However, the disadvantage of vertex array is that vertex array functions are in the client state and the data in the arrays must be re-sent to the server each time when it is referenced. 
+</p>
+<p>
+On the other hand, display list is server side function, so it does not suffer from overhead of data transfer. But, once a display list is compiled, the data in the display list cannot be modified. 
+</p>
+<p>
+Vertex buffer object (VBO) creates <i>"buffer objects"</i> for vertex attributes in high-performance memory on the server side and provides same access functions to reference the arrays, which are used in vertex arrays, such as glVertexPointer(), glNormalPointer(), glTexCoordPointer(), etc.
+</p>
+<p>
+The memory manager in vertex buffer object will put the buffer objects into the best place of memory based on user's hints: <i>"target"</i> and <i>"usage"</i> mode. Therefore, the memory manager can optimize the buffers by balancing between 3 kinds of memory: system, AGP and video memory.
+</p>
+<p>
+Unlike display lists, the data in vertex buffer object can be read and updated by mapping the buffer into client's memory space.
+</p>
+<p>
+Another important advantage of VBO is sharing the buffer objects with many clients, like display lists and textures. Since VBO is on the server's side, multiple clients will be able to access the same buffer with the corresponding identifier.
+</p>
+
+<h3 id="create">Creating VBO</h3>
+<p>
+Creating a VBO requires 3 steps;
+</p>
+<ol>
+	<li>Generate a new buffer object with <b>glGenBuffersARB()</b>.</li>
+	<li>Bind the buffer object with <b>glBindBufferARB()</b>.</li>
+	<li>Copy vertex data to the buffer object with <b>glBufferDataARB()</b>.</li>
+</ol>
+
+<h4>glGenBuffersARB()</h4>
+<p style="margin-left:30px">
+glGenBuffersARB() creates buffer objects and returns the identifiers of the buffer objects. It requires 2 parameters: the first one is the number of buffer objects to create, and the second parameter is the address of a GLuint variable or array to store a single ID or multiple IDs.
+</p>
+<pre><code class="codeblock" style="margin-left:30px;">
+void glGenBuffersARB(GLsizei n, GLuint* ids)
+
+</code></pre>
+
+<h4>glBindBufferARB()</h4>
+<p style="margin-left:30px">
+Once the buffer object has been created, we need to hook the buffer object with the corresponding ID before using the buffer object. glBindBufferARB() takes 2 parameters: <i>target</i> and <i>ID</i>.
+</p>
+
+<pre><code class="codeblock" style="margin-left:30px;">
+void glBindBufferARB(GLenum target, GLuint id)
+
+</code></pre>
+
+<p style="margin-left:30px">
+<i>Target</i> is a hint to tell VBO whether this buffer object will store vertex array data or index array data: GL_ARRAY_BUFFER_ARB, or GL_ELEMENT_ARRAY_BUFFER_ARB. Any vertex attributes, such as vertex coordinates, texture coordinates, normals and color component arrays should use GL_ARRAY_BUFFER_ARB. Index array which is used for glDraw[Range]Elements() should be tied with GL_ELEMENT_ARRAY_BUFFER_ARB. Note that this <i>target</i> flag assists VBO to decide the most efficient locations of buffer objects, for example, some systems may prefer indices in AGP or system memory, and vertices in video memory.
+</p>
+<p style="margin-left:30px">
+Once glBindBufferARB() is first called, VBO initializes the buffer with a zero-sized memory buffer and set the initial VBO states, such as usage and access properties.
+</p>
+
+<h4>glBufferDataARB()</h4>
+<p style="margin-left:30px">
+You can copy the data into the buffer object with glBufferDataARB() when the buffer has been initialized.
+</p>
+<pre><code class="codeblock" style="margin-left:30px;">
+void glBufferDataARB(GLenum target, GLsizei size, const void* data, GLenum usage)
+
+</code></pre>
+
+<p style="margin-left:30px">
+Again, the first parameter, <i>target</i> would be GL_ARRAY_BUFFER_ARB or GL_ELEMENT_ARRAY_BUFFER_ARB. <i>Size</i> is the number of bytes of data to transfer. The third parameter is the pointer to the array of source data. If <i>data</i> is NULL pointer, then VBO reserves only memory space with the given data size. The last parameter, <i>"usage"</i> flag is another performance hint for VBO to provide how the buffer object is going to be used: <i>static</i>, <i>dynamic</i> or <i>stream</i>, and <i>read</i>, <i>copy</i> or <i>draw</i>.
+</p>
+<p style="margin-left:30px">
+VBO specifies 9 enumerated values for <i>usage</i> flags;
+</p>
+<pre><code class="codeblock" style="margin-left:30px;">
+GL_STATIC_DRAW_ARB
+GL_STATIC_READ_ARB
+GL_STATIC_COPY_ARB
+GL_DYNAMIC_DRAW_ARB
+GL_DYNAMIC_READ_ARB
+GL_DYNAMIC_COPY_ARB
+GL_STREAM_DRAW_ARB
+GL_STREAM_READ_ARB
+GL_STREAM_COPY_ARB
+
+</code></pre>
+
+<p style="margin-left:30px">
+<i>"Static"</i> means the data in VBO will not be changed (specified once and used many times), <i>"dynamic"</i> means the data will be changed frequently (specified and used repeatedly), and <i>"stream"</i> means the data will be changed every frame (specified once and used once).
+<i>"Draw"</i> means the data will be sent to GPU in order to draw (application to GL), <i>"read"</i> means the data will be read by the client's application (GL to application), and <i>"copy"</i> means the data will be used both drawing and reading (GL to GL).
+</p>
+<p style="margin-left:30px">
+Note that only <i>draw</i> token is useful for VBO, and <i>copy</i> and <i>read</i> token will be become meaningful only for pixel/frame buffer object (<a href="http://www.songho.ca/opengl/gl_pbo.html" data-ss1502388427="1">PBO</a> or <a href="http://www.songho.ca/opengl/gl_fbo.html" data-ss1502388427="1">FBO</a>).
+</p>
+<p style="margin-left:30px">
+VBO memory manager will choose the best memory places for the buffer object based on these usage flags, for example, GL_STATIC_DRAW_ARB and GL_STREAM_DRAW_ARB may use video memory, and GL_DYNAMIC_DRAW_ARB may use AGP memory. Any _READ_ related buffers would be fine in system or AGP memory because the data should be easy to access. 
+</p>
+
+<h4>glBufferSubDataARB()</h4>
+<pre><code class="codeblock" style="margin-left:30px;">
+void glBufferSubDataARB(GLenum target, GLint offset, GLsizei size, void* data)
+
+</code></pre>
+
+<p style="margin-left:30px">
+Like glBufferDataARB(), glBufferSubDataARB() is used to copy data into VBO, but it only replaces a range of data into <i>the existing buffer</i>, starting from the given offset. (The total size of the buffer must be set by glBufferDataARB() before using glBufferSubDataARB().)
+</p>
+
+<h4>glDeleteBuffersARB()</h4>
+<pre><code class="codeblock" style="margin-left:30px;">
+void glDeleteBuffersARB(GLsizei n, const GLuint* ids)
+
+</code></pre>
+
+<p style="margin-left:30px">
+You can delete a single VBO or multiple VBOs with glDeleteBuffersARB() if they are not used anymore. After a buffer object is deleted, its contents will be lost.
+</p>
+
+<p>
+The following code is an example of creating a single VBO for vertex coordinates. Notice that you can delete the memory allocation for vertex array in your application after you copy data into VBO.
+</p>
+<pre><code class="codeblock">
+GLuint vboId;                              <span class="comment">// ID of VBO</span>
+GLfloat* vertices = new GLfloat[vCount*3]; <span class="comment">// create vertex array</span>
+...
+
+<span class="comment">// generate a new VBO and get the associated ID</span>
+glGenBuffersARB(1, &amp;vboId);
+
+<span class="comment">// bind VBO in order to use</span>
+glBindBufferARB(GL_ARRAY_BUFFER_ARB, vboId);
+
+<span class="comment">// upload data to VBO</span>
+glBufferDataARB(GL_ARRAY_BUFFER_ARB, dataSize, vertices, GL_STATIC_DRAW_ARB);
+
+<span class="comment">// it is safe to delete after copying data to VBO</span>
+delete [] vertices;
+...
+
+<span class="comment">// delete VBO when program terminated</span>
+glDeleteBuffersARB(1, &amp;vboId);
+
+</code></pre>
+
+<h3 id="draw">Drawing VBO</h3>
+<p>
+Because VBO sits on top of the existing vertex array implementation, rendering VBO is almost same as using <a href="http://www.songho.ca/opengl/gl_vertexarray.html" data-ss1502388427="1">vertex array</a>. Only difference is that the pointer to the vertex array is now as an offset into a currently bound buffer object. Therefore, no additional APIs are required to draw a VBO except glBindBufferARB().
+</p>
+
+<pre><code class="codeblock">
+<span class="comment">// bind VBOs for vertex array and index array</span>
+glBindBufferARB(GL_ARRAY_BUFFER_ARB, vboId1);         <span class="comment">// for vertex coordinates</span>
+glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, vboId2); <span class="comment">// for indices</span>
+
+<span class="comment">// do same as vertex array except pointer</span>
+glEnableClientState(GL_VERTEX_ARRAY);             <span class="comment">// activate vertex coords array</span>
+glVertexPointer(3, GL_FLOAT, 0, 0);               <span class="comment">// last param is offset, not ptr</span>
+
+<span class="comment">// draw 6 quads using offset of index array</span>
+glDrawElements(GL_QUADS, 24, GL_UNSIGNED_BYTE, 0);
+
+glDisableClientState(GL_VERTEX_ARRAY);            <span class="comment">// deactivate vertex array</span>
+
+<span class="comment">// bind with 0, so, switch back to normal pointer operation</span>
+glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
+glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, 0);
+
+</code></pre>
+
+<p>
+Binding the buffer object with 0 switchs off VBO operation. It is a good idea to turn VBO off after use, so normal vertex array operations with absolute pointers will be re-activated.
+</p>
+
+<h3 id="update">Updating VBO</h3>
+<p>
+The advantage of VBO over <a href="http://www.songho.ca/opengl/gl_displaylist.html" data-ss1502388427="1">display list</a> is the client can read and modify the buffer object data, but display list cannot. The simplest method of updating VBO is copying again new data into the bound VBO with glBufferDataARB() or glBufferSubDataARB(). For this case, your application should have a valid vertex array all the time in your application. That means that you must always have 2 copies of vertex data: one in your application and the other in VBO.
+</p>
+<p>
+The other way to modify buffer object is to map the buffer object into client's memory, and the client can update data with the pointer to the mapped buffer. The following describes how to map VBO into client's memory and how to access the mapped data.
+</p>
+
+<h4>glMapBufferARB()</h4>
+<p style="margin-left:30px">
+VBO provides glMapBufferARB() in order to map the buffer object into client's memory.
+</p>
+<pre><code class="codeblock" style="margin-left:30px;">
+void* glMapBufferARB(GLenum target, GLenum access)
+
+</code></pre>
+
+<p style="margin-left:30px">
+If OpenGL is able to map the buffer object into client's address space, glMapBufferARB() returns the pointer to the buffer. Otherwise it returns NULL.
+</p>
+<p style="margin-left:30px">
+The first parameter, <i>target</i> is mentioned earlier at glBindBufferARB() and the second parameter, <i>access</i> flag specifies what to do with the mapped data: read, write or both.
+</p>
+<pre><code class="codeblock" style="margin-left:30px;">
+GL_READ_ONLY_ARB
+GL_WRITE_ONLY_ARB
+GL_READ_WRITE_ARB
+
+</code></pre>
+
+<p style="margin-left:30px">
+Note that glMapBufferARB() causes a synchronizing issue. If GPU is still working with the buffer object, glMapBufferARB() will not return until GPU finishes its job with the corresponding buffer object. 
+</p>
+<p style="margin-left:30px">
+To avoid waiting (idle), you can call first glBufferDataARB() with NULL pointer, then call glMapBufferARB(). In this case, the previous data will be discarded and glMapBufferARB() returns a new allocated pointer immediately even if GPU is still working with the previous data. 
+</p>
+<p style="margin-left:30px">
+However, this method is valid only if you want to update entire data set because you discard the previous data. If you want to change only portion of data or to read data, you better not release the previous data.
+</p>
+
+<h4>glUnmapBufferARB()</h4>
+<pre><code class="codeblock" style="margin-left:30px;">
+GLboolean glUnmapBufferARB(GLenum target)
+
+</code></pre>
+
+<p style="margin-left:30px">
+After modifying the data of VBO, it must be unmapped the buffer object from the client's memory. glUnmapBufferARB() returns GL_TRUE if success. When it returns GL_FALSE, the contents of VBO become corrupted while the buffer was mapped. The corruption results from screen resolution change or window system specific events. In this case, the data must be resubmitted.
+</p>
+
+<p>
+Here is a sample code to modify VBO with mapping method.
+</p>
+<pre><code class="codeblock">
+<span class="comment">// bind then map the VBO</span>
+glBindBufferARB(GL_ARRAY_BUFFER_ARB, vboId);
+float* ptr = (float*)glMapBufferARB(GL_ARRAY_BUFFER_ARB, GL_WRITE_ONLY_ARB);
+
+<span class="comment">// if the pointer is valid(mapped), update VBO</span>
+if(ptr)
+{
+    updateMyVBO(ptr, ...);                 <span class="comment">// modify buffer data</span>
+    glUnmapBufferARB(GL_ARRAY_BUFFER_ARB); <span class="comment">// unmap it after use</span>
+}
+
+<span class="comment">// you can draw the updated VBO</span>
+...
+
+</code></pre>
+
+<h3 id="example">Example</h3>
+<p>
+<img src="./OpenGL Vertex Buffer Object (VBO)_files/gl_vbo.png" width="447" height="370" alt="Example of VBO">
+<br>
+This demo application makes a VBO wobbling in and out along normals. It maps a VBO and updates its vertices every frame with the pointer to the mapped buffer. You can compare the performace with a traditional vertex array implementation.
+</p>
+<p>
+It uses 2 vertex buffers; one for both vertex coords and normals, and the other stores index array only.
+</p>
+<p>
+Download the source and binary: <a href="http://www.songho.ca/opengl/files/vbo.zip" data-ss1502388427="1">vbo.zip</a>, <a href="http://www.songho.ca/opengl/files/vboSimple.zip" data-ss1502388427="1">vboSimple.zip</a> <em>(Updated: 2014-05-03)</em>.
+</p>
+<p>
+vboSimple is a very simple example to draw a cube using VBO and <a href="http://www.songho.ca/opengl/gl_vertexarray.html" data-ss1502388427="1">Vertex Array</a>. You can easily see what is common and what is different between VBO and VA.
+</p>
+<p>
+I also include a makefile (Makefile.linux) for linux system in <i>src</i> folder, so you can build an executable on your linux box, for example:
+</p>
+<pre><code class="codeblock">
+&gt; make -f Makefile.linux
+
+</code></pre>
+
+
+
+
+<!-- footer -->
+<div id="footer">
+<div style="float:left">
+©&nbsp;2005-2014 <a href="mailto:song.ahn@gmail.com" rel="noreferrer" data-ss1502388427="1">Song Ho Ahn (<span lang="ko">안성호</span>)</a>
+</div>
+<div style="float:right">
+<img src="./OpenGL Vertex Buffer Object (VBO)_files/html5_gray32.png" width="32" height="32" alt="HTML5 Logo">
+</div>
+<div style="float:right">
+<a href="http://validator.w3.org/check?uri=referer" rel="noreferrer" data-ss1502388427="1"><img src="./OpenGL Vertex Buffer Object (VBO)_files/I_heart_validator.png" width="80" height="15" alt="HTML Validator"></a>
+</div>
+</div>
+
+<!-- nav -->
+<div style="clear:both; font-size:80%">
+<a href="http://www.songho.ca/opengl/index.html" data-ss1502388427="1">←Back</a>
+</div>
+
+
+</div>
+</div> <!-- END OF LEFTBLOCK -->
+
+
+<!-- right content block ============================================ -->
+<div id="rightblock">
+<div class="innerblock">
+
+<!-- DISQUS block =============================== -->
+<div id="commentblock">
+<div id="buttonDisqus" class="cssbutton">
+Hide Comments
+</div>
+
+<div id="disqus_thread">
+</div>
+<script type="text/javascript">
+var disqus_shortname = 'songho'; // required: replace example with your forum shortname
+//var disqus_identifier = 'test';
+var disqus_config = function() {
+    this.discovery.disable_all = true;
+};
+(function() {
+    var dsq=document.createElement('script'); dsq.type='text/javascript'; dsq.async=true;
+    dsq.src='http://'+disqus_shortname+'.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>
+Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;
+</noscript>
+<a href="http://disqus.com/" class="dsq-brlink" rel="noreferrer" data-ss1502388427="1">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+<!-- END OF DISQUS BLOCK ======================== -->
+
+<div>
+&nbsp;
+</div>
+
+</div>
+</div>
+<!-- END OF RIGHT BLOCK ============================================= -->
+
+</div>
+<!-- END OF WRAP ==================================================== -->
+
+
+
+</body></html>
