@@ -289,7 +289,9 @@ void init()
 {
 	glfwSetErrorCallback(error_callback);
 	if (!glfwInit())
+	{
 		exit(EXIT_FAILURE);
+	}
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
@@ -305,7 +307,6 @@ void init()
 	glfwMakeContextCurrent(globals.window);
 	gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 	glfwSwapInterval(1);
-
 
 
 	/*---------------------- Shader Setup ---------------------*/
@@ -341,6 +342,9 @@ void init()
 
 void mainloop()
 {
+	glEnable(GL_DEPTH_TEST);
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST); // Ask for nicest perspective correction
+
 	/*---------------------- Application Mainloop ---------------------*/
 	while (!glfwWindowShouldClose(globals.window))
 	{
@@ -356,14 +360,14 @@ void mainloop()
 
 		// Clear the screen and setup the orientation of the objects in the scene.
 		{
-			glClear(GL_COLOR_BUFFER_BIT);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			mat4x4_identity(globals.m);
 
 			mat4x4_translate(globals.m, 0, .5, -3);
 			//mat4x4_rotate_Z(globals.m, globals.m, (float)glfwGetTime());
 			mat4x4_rotate_Y(globals.m, globals.m, (float)glfwGetTime());
 			//mat4x4_ortho(globals.p, -globals.ratio, globals.ratio, -1.f, 1.f, 15.f, -10.f);
-			mat4x4_perspective(globals.p, 45, (float)globals.width / (float)globals.height, 0.01, 3);
+			mat4x4_perspective(globals.p, 45, (float)globals.width / (float)globals.height, 0.001, 5);
 			mat4x4_mul(globals.mvp, globals.p, globals.m);
 			// Draw
 			draw();
@@ -385,13 +389,25 @@ vector<objObject> obj;
 GLuint vertex_buffer, IndexBufferId;
 void simpleInit()
 {
-	loadObject(std::string(DIR_ROOT) + "data\\mesh\\box.obj", obj);
+	loadObject(std::string(DIR_ROOT) + "data\\mesh\\smallBread.obj", obj);
 	obj[0].consolidate();
 
 	//bool upload()
 		glGenBuffers(1, &vertex_buffer);
 		glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float)* 8 * obj[0].compiledVertex.size() , &obj[0].compiledVertex[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)* 8 * obj[0].compiledVertex.size() , &obj[0].compiledVertex[0], GL_STATIC_DRAW);
+		
+		
+			GLint vpos_location, vcol_location;
+			vpos_location = glGetAttribLocation(globals.program, "vPos");
+			vcol_location = glGetAttribLocation(globals.program, "vCol");
+
+			glEnableVertexAttribArray(vpos_location);
+			glVertexAttribPointer(vpos_location, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, (void*)0);
+
+			glEnableVertexAttribArray(vcol_location);
+			glVertexAttribPointer(vcol_location, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 8, (void*)(sizeof(GLfloat) * 5));
+
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 		glGenBuffers(1, &IndexBufferId);
@@ -407,19 +423,8 @@ void simpleInit()
 void draw()
 {
 	//bool draw()
-	GLint vpos_location, vcol_location;
 
 	glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
-
-	vpos_location = glGetAttribLocation(globals.program, "vPos");
-	vcol_location = glGetAttribLocation(globals.program, "vCol");
-
-	glEnableVertexAttribArray(vpos_location);
-	glVertexAttribPointer(vpos_location, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8, (void*)0);
-
-	glEnableVertexAttribArray(vcol_location);
-	glVertexAttribPointer(vcol_location, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 8, (void*)(sizeof(float) * 5));
-
 
 	// Index buffer
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferId);
@@ -433,8 +438,6 @@ void draw()
 		GL_UNSIGNED_INT ,   // type
 		(void*)0           // element array buffer offset
 	);
-
-	//EXPECT_EQ(glGetError(), GL_NO_ERROR);
 }
 
 

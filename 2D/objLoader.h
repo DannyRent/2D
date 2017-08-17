@@ -15,37 +15,40 @@ struct objObject
 
 	//File Data
 	string name;
-	vector<array<float,3>> vertexArray;
-	vector<array<float, 2>> textureArray;
-	vector<array<float, 3>> normalArray;
-	vector<array<array<float, 3>, 3>> indexArray;
+	vector<array<GLfloat,3>> vertexArray;
+	vector<array<GLfloat, 2>> textureArray;
+	vector<array<GLfloat, 3>> normalArray;
+	vector<array<array<GLfloat, 3>, 3>> indexArray;
 
 	// Ordered data
-	map<array<float,3>, int> mapp;
+	map<array<GLfloat,3>, int> mapp;
 
-	vector<array<float,8>> compiledVertex;
+	vector<array<GLfloat,8>> compiledVertex;
 	vector<GLuint> indexList;
 
 	void consolidate()
 	{
 
-		array<float, 3> *v3Ref_Vert {nullptr}, *v3Ref_Norm {nullptr};
-		array<float, 2> *v2Ref {nullptr};
+		array<GLfloat, 3> *v3Ref_Vert {nullptr}, *v3Ref_Norm {nullptr};
+		array<GLfloat, 2> *v2Ref {nullptr};
 
-		for (array<array<float, 3>, 3> &triangleIndex : indexArray)
+		for (array<array<GLfloat, 3>, 3> &triangleIndex : indexArray)
 		{
-			for (array<float, 3> &triIndexVert : triangleIndex)
+			for (array<GLfloat, 3> &triIndexVert : triangleIndex)
 			{
 				if (mapp.find(triIndexVert) == mapp.end())
 				{
-					v3Ref_Vert = &vertexArray.at(triIndexVert[0]-1);
-					v2Ref = &textureArray.at(triIndexVert[1]-1 );
-					v3Ref_Norm = &normalArray.at(triIndexVert[2]-1 );
+					v3Ref_Vert = &vertexArray.at (triIndexVert[0] - 1);
+					v2Ref      = &textureArray.at(triIndexVert[1] - 1);
+					v3Ref_Norm = &normalArray.at (triIndexVert[2] - 1);
+
+
+					mapp[triIndexVert] = compiledVertex.size();
+					indexList.push_back(compiledVertex.size());
 
 					compiledVertex.push_back({v3Ref_Vert[0][0], v3Ref_Vert[0][1], v3Ref_Vert[0][2], v2Ref[0][0], v2Ref[0][1], v3Ref_Norm[0][0], v3Ref_Norm[0][1], v3Ref_Norm[0][2]});
 
-					mapp[triIndexVert] = compiledVertex.size()-1;
-					indexList.push_back(compiledVertex.size()-1);
+
 				}
 				else
 				{
@@ -120,7 +123,7 @@ bool loadObject(std::string objFileName, std::vector<objObject> &objectVector)
 	int lineLen{0}, vertIndex{0}, polyIndex{0}, charIndex{0};
 
 
-	array<array<float, 3>, 3> VertexData;
+	array<array<GLfloat, 3>, 3> VertexData;
 	objObject curObj;
 
 	while (getline(objFile, line))
@@ -205,7 +208,7 @@ bool loadObject(std::string objFileName, std::vector<objObject> &objectVector)
 				curObj.vertexArray.push_back(VertexData[0]);
 				break;
 			case 't':
-				curObj.textureArray.push_back(std::array<float, 2>{VertexData[0][0], VertexData[0][1]});
+				curObj.textureArray.push_back(std::array<GLfloat, 2>{VertexData[0][0], VertexData[0][1]});
 				break;
 			case 'n':
 				curObj.normalArray.push_back(VertexData[0]);
